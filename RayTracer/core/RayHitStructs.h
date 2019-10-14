@@ -15,18 +15,17 @@ namespace rt{
 enum RayType {PRIMARY, SECONDARY, SHADOW};
 
 struct Ray{
-
 	RayType raytype;
-
-	//----------Ray variables to be filled------
+	Vec3 o;
+	Vec3 d;
 };
 
 
 struct Hit{
-
-	Vec3f point; //point where ray hits a shape
-	//----------Hit variables to be filled------
-
+	bool itsct; // true if intersection has occured
+	float t; // t value associated with intersection
+	Vec3f point; // point where ray hits a shape
+	Material mat; // material at point where ray hits a shape
 };
 
 }

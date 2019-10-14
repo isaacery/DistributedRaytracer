@@ -8,6 +8,7 @@
 #include "math/geometry.h"
 #include "core/Camera.h"
 #include "core/Scene.h"
+#include "core/RayHitStructs.h"
 
 namespace rt{
 
@@ -38,4 +39,3 @@ private:
 
 
 #endif /* RAYTRACER_H_ */
-

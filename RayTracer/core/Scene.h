@@ -25,6 +25,10 @@ public:
 
 	void createScene(Value& scenespecs);
 
+	std::vector<Shape*> getShapes();
+
+	std::vector<LightSource*> getLightSources();
+
 
 private:
 
