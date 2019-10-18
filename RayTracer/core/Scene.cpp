@@ -19,12 +19,4 @@ void Scene::createScene(Value& scenespecs){
 
 }
 
-std::vector<Shape*> getShapes() {
-    return this->shapes;
-}
-
-std::vector<LightSource*> getLightSources() {
-    return this->lightSources;
-}
-
 } //namespace rt

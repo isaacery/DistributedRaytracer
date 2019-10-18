@@ -17,9 +17,9 @@ namespace rt{
 	 * @return hit struct containing intersection information
 	 *
 	 */
-	Hit Sphere::intersect(Ray ray){
+	Hit* Sphere::intersect(Ray ray){
 
-		Hit h;
+		Hit* h;
 		//-----------to be implemented -------------
 
 
@@ -30,5 +30,3 @@ namespace rt{
 
 
 } //namespace rt
-
-

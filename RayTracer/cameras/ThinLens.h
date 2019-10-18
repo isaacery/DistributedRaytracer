@@ -18,7 +18,8 @@ public:
 	// Constructors
 	//
 	ThinLens():Camera(){};
-	ThinLens(int width, int height, int fov);
+	ThinLens(int width, int height, int fov, Matrix44f cameraToWorld):
+	Camera(width, height, fov, cameraToWorld){}
 
 	//
 	//Destructor

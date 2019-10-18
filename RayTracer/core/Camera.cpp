@@ -34,10 +34,14 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 	std::string cameraType=cameraSpecs["type"].GetString();
 
 	//return camera object based on camera specs
+
+	Matrix44f m;
+
 	if (cameraType.compare("pinhole")==0){
 		return new Pinhole(cameraSpecs["width"].GetInt(),
 				cameraSpecs["height"].GetInt(),
-				cameraSpecs["fov"].GetInt());
+				cameraSpecs["fov"].GetInt(),
+				m);
 
 	}else if (cameraType.compare("thinlens")==0){
 		return new ThinLens();

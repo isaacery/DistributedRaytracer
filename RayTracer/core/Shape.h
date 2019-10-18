@@ -6,10 +6,16 @@
 #ifndef SHAPE_H_
 #define SHAPE_H_
 
-#include "core/RayHitStructs.h"
 #include "core/Material.h"
+#include "core/RayHitStructs.h"
 
 namespace rt{
+
+class Material;
+
+struct Hit;
+
+struct Ray;
 
 class Shape{
 public:
@@ -27,7 +33,7 @@ public:
 	//
 	// Shape abstract methods (to be implemented by subclasses)
 	//
-	virtual Hit intersect(Ray)=0;
+	virtual Hit* intersect(Ray ray)=0;
 
 
 protected:

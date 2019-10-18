@@ -14,14 +14,7 @@ namespace rt{
 	int width;
 	int height;
 	int fov;
-	//
-	// Pinhole constructor (example)
-	//
-	Pinhole::Pinhole(int width, int height, int fov):Camera(width, height, fov){
-
-	}
-
-
+	
 	/**
 	 * Prints camera data
 	 * this function implements the abstract function of the base Camera class

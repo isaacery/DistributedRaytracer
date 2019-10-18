@@ -18,6 +18,8 @@ using namespace rapidjson;
 
 namespace rt{
 
+class Shape;
+
 class Scene {
 public:
 
@@ -25,15 +27,26 @@ public:
 
 	void createScene(Value& scenespecs);
 
-	std::vector<Shape*> getShapes();
+	// getters
+	std::vector<Shape*> getShapes() const {
+	    return shapes;
+	}
 
-	std::vector<LightSource*> getLightSources();
+	std::vector<LightSource*> getLightSources() const {
+	    return lightSources;
+	}
+
+	float getAmbient() const {
+		return ambient;
+	}
 
 
 private:
 
 	std::vector<LightSource*> lightSources;
 	std::vector<Shape*> shapes;
+
+	float ambient;
 
 };
 

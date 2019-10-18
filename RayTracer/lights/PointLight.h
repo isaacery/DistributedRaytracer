@@ -14,6 +14,14 @@ namespace rt{
 
 class PointLight: public LightSource{
 
+public:
+    Vec3f vFrom(Vec3f point) {
+        return (position - point).normalize();
+    }
+
+private:
+    Vec3f position;
+
 
 };
 

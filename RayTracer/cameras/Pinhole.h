@@ -13,12 +13,12 @@ namespace rt{
 
 class Pinhole:public Camera{
 public:
-
 	//
 	// Constructors
 	//
 	Pinhole();
-	Pinhole(int width, int height, int fov);
+	Pinhole(int width, int height, int fov, Matrix44f cameraToWorld):
+		Camera(width, height, fov, cameraToWorld){};
 
 	//
 	//Destructor

@@ -7,6 +7,7 @@
 #define CAMERA_H_
 
 #include "rapidjson/document.h"
+#include "math/geometry.h"
 
 
 using namespace rapidjson;
@@ -16,15 +17,12 @@ namespace rt{
 class Camera{
 public:
 
-	//
-	// Constructors
-	//
-	Camera(){};
-	Camera(int height, int width, int fov):height(height), width(width), fov(fov){};
+	// constructors
+	Camera() {};
+	Camera(int height, int width, int fov, Matrix44f cameraToWorld):
+		height(height), width(width), fov(fov), cameraToWorld(cameraToWorld) {};
 
-	//
-	// Destructor
-	//
+	// destructor
 	virtual ~Camera();
 
 
@@ -39,24 +37,9 @@ public:
 	//
 	virtual void printCamera()=0;
 
-
-
 	//
 	// other camera functions (to complete)
 	//
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	//
 	// Getters and Setters
@@ -77,17 +60,29 @@ public:
 		this->width = width;
 	}
 
+	int getFov() const {
+		return fov;
+	}
+
+	void setFov(int fov) {
+		this->fov = fov;
+	}
+
+	Matrix44f getCameraToWorld() const {
+		return cameraToWorld;
+	}
+
+	void setCameraToWorld(Matrix44f cameraToWorld) {
+		this->cameraToWorld = cameraToWorld;
+	}
+
 
 
 protected:
-
-	//
-	//camera members
-	//
 	int height;
 	int width;
-	int fov; //field of view
-
+	int fov;
+	Matrix44f cameraToWorld;
 };
 
 } //namespace rt

@@ -13,15 +13,6 @@
 
 namespace rt{
 
-	//
-	// ThinLens constructor (example)
-	//
-	ThinLens::ThinLens(int width, int height, int fov):Camera(width, height, fov){
-
-		//to fill
-
-	}
-
 	/**
 	 * Prints camera data
 	 * this function implements the abstract function of the base Camera class
