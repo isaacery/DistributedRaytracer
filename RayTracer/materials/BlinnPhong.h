@@ -15,8 +15,13 @@ class BlinnPhong: public Material{
 public:
     // constructor
     BlinnPhong(float specular, float alpha, float diffuse, float ambient, Vec3f colour):
-        specular(specular), alpha(alpha), diffuse(diffuse), ambient(ambient),
-        colour(colour), reflectance(reflectance) {};
+        Material(colour) {
+            this->specular = specular;
+            this->alpha = alpha;
+            this->diffuse = diffuse;
+            this->ambient = ambient;
+            this->reflectance = reflectance;
+        }
 
     // setters and getters TODO: do we need these?
     float getSpecular() const {
@@ -51,7 +56,7 @@ public:
         this->reflectance = reflectance;
     }
 
-    Vec3f shade(Scene* scene, Hit h);
+    Vec3f shade(Scene* scene, Hit h, int nbounces);
 
 private:
     // TODO: do we always have specular + diffuse = 1?

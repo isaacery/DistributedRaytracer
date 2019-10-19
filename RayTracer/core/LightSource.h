@@ -6,6 +6,7 @@
 #ifndef LIGHTSOURCE_H_
 #define LIGHTSOURCE_H_
 
+#include "math/geometry.h"
 
 namespace rt{
 

@@ -14,7 +14,7 @@
 
 namespace rt{
 
-
+class Scene;
 
 /*
  * Raytracer class declaration

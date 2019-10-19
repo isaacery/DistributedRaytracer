@@ -8,7 +8,6 @@
 #define SPHERE_H_
 
 #include "math/geometry.h"
-#include "core/RayHitStructs.h"
 #include "core/Shape.h"
 
 namespace rt{
@@ -29,7 +28,7 @@ public:
 	//
 	// Functions that need to be implemented, since Sphere is a subclass of Shape
 	//
-	Hit* intersect(Ray ray);
+	Hit intersect(Ray ray);
 
 private:
 

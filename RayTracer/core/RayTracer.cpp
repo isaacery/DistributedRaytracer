@@ -9,14 +9,14 @@ namespace rt{
 /* Returns the closest intersection between ray and a shape in the scene */
 Hit* RayTracer::getIntersection(Scene* scene, Ray ray) {
 	Hit* i; // current intersection
-	Hit c = {.t = -1};
+	Hit c;
+	c.t = -1;
 	Hit* closest = &c; // current closest intersection TODO: what to set this to
 	for (auto s : scene->getShapes()) { // check all shapes for intersection
-		i = s->intersect(ray);
-		/* if intersection is closer than previous and greater than
-		zero update closest intersection */
-		// TODO: will t always be a number? What if no intersection occurs?
-		if (i->t < closest->t && i->t > 0) {
+		Hit is = s->intersect(ray);
+		i = &is; // TODO: this is dumb
+		/* if intersection occured and is closer than previous */
+		if (i->itsct && i->t < closest->t) {
 			closest = i;
 		}
 	}

@@ -1,5 +1,3 @@
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles/rebuild_cache.dir
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles/vectorexample.dir
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles/edit_cache.dir
 /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles/jsonexample.dir
 /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles/raytracer.dir
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles/vectorexample.dir

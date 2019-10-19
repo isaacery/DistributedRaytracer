@@ -1,1 +1,1 @@
-/usr/bin/c++      -rdynamic CMakeFiles/jsonexample.dir/examples/jsonExample.cpp.o  -o jsonexample 
+/opt/rh/devtoolset-7/root/usr/bin/c++       CMakeFiles/jsonexample.dir/examples/jsonExample.cpp.o  -o jsonexample -rdynamic 

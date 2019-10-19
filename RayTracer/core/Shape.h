@@ -33,12 +33,11 @@ public:
 	//
 	// Shape abstract methods (to be implemented by subclasses)
 	//
-	virtual Hit* intersect(Ray ray)=0;
+	virtual Hit intersect(Ray ray)=0;
 
 
 protected:
-
-	Material * material;
+	Material* material;
 
 };
 

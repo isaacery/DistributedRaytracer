@@ -50,7 +50,7 @@ int main(int argc, char* argv[]){
 	delete camera;
 	delete scene;
 
-	Vec3f* pixelbuffer = RayTracer::render(camera, scene, 1);
+	//Vec3f* pixelbuffer = RayTracer::render(camera, scene, 1);
 
 	// convert linear RGB pixel values [0-1] to range 0-255
 	pixelbuffer = RayTracer::tonemap(pixelbuffer);
