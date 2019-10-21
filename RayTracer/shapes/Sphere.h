@@ -20,10 +20,11 @@ public:
 	// Constructors
 	//
 	Sphere();
-	Sphere(Vec3f center, float radius):center(center), radius(radius){};
-
-	virtual ~Sphere();
-
+	Sphere(Vec3f center, float radius, Material* material):
+	Shape(material) {
+		this->center = center;
+		this->radius = radius;
+	}
 
 	//
 	// Functions that need to be implemented, since Sphere is a subclass of Shape

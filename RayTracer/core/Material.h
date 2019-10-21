@@ -19,8 +19,9 @@ class Material{
 public:
     Material(Vec3f colour): colour(colour){};
     // shade material based on scene and intersection h
-    virtual Vec3f shade(Scene* scene, Hit* h, int nbounces) = 0;
+    virtual Vec3f shade(Scene* scene, Hit h, int nbounces) = 0;
 
+    virtual void print() = 0; // output information about material
 protected:
     Vec3f colour;
 };

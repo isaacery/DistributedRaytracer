@@ -12,6 +12,9 @@ namespace rt{
 
 class LightSource{
 public:
+    // constructor
+    LightSource(float intensity): intensity(intensity){};
+
     float getIntersity() const {
         return intensity;
     }
@@ -20,10 +23,10 @@ public:
         this->intensity = intensity;
     }
 
-    /* returns normalised direction from point to light */
+    /* returns direction from point to light */
     virtual Vec3f vFrom(Vec3f point) = 0;
 
-private:
+protected:
     float intensity;
 };
 

@@ -25,6 +25,9 @@ public:
 
 	Scene(){};
 
+	Scene(std::vector<LightSource*> lightSources, std::vector<Shape*> shapes, float ambientLight):
+		lightSources(lightSources), shapes(shapes), ambientLight(ambientLight){};
+
 	void createScene(Value& scenespecs);
 
 	// getters
@@ -36,8 +39,8 @@ public:
 	    return lightSources;
 	}
 
-	float getAmbient() const {
-		return ambient;
+	float getAmbientLight() const {
+		return ambientLight;
 	}
 
 
@@ -46,7 +49,7 @@ private:
 	std::vector<LightSource*> lightSources;
 	std::vector<Shape*> shapes;
 
-	float ambient;
+	float ambientLight;
 
 };
 

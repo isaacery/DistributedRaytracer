@@ -216,6 +216,7 @@ CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../lights/PointLight.cpp
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../lights/PointLight.h
 
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../cameras/Pinhole.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/Camera.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/LightSource.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/Material.h
@@ -223,6 +224,8 @@ CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../lights/PointLight.h
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/PPMWriter.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/allocators.h
@@ -246,6 +249,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/msinttypes/stdint
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/stream.h
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Sphere.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../main/main.cpp
 
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../core/Camera.h

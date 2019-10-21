@@ -25,9 +25,9 @@ public:
 	RayTracer();
 
 	static Vec3f* render(Camera* camera, Scene* scene, int nbounces);
-	static Hit* getIntersection(Scene* scene, Ray ray);
+	static Hit getIntersection(Scene* scene, Ray ray);
 	static Vec3f rayTrace(Scene* scene, Ray ray, int nbounces);
-	static Vec3f* tonemap(Vec3f* pixelbuffer);
+	static Vec3f* tonemap(Vec3f* pixelbuffer, int len);
 
 
 private:

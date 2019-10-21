@@ -48,7 +48,7 @@ public:
 		return height;
 	}
 
-	void setHeight(int height) {
+	void setHeicToWght(int height) {
 		this->height = height;
 	}
 

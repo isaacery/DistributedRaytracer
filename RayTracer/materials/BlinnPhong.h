@@ -58,8 +58,9 @@ public:
 
     Vec3f shade(Scene* scene, Hit h, int nbounces);
 
+    void print();
+
 private:
-    // TODO: do we always have specular + diffuse = 1?
     float specular; // in range [0,1], determines how specular material is
     float diffuse; // in range [0,1], determines how diffuse material is
     float ambient; // ambient shading of material

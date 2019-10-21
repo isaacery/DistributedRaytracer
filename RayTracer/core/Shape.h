@@ -25,10 +25,12 @@ public:
 	//
 	Shape();
 
+	Shape(Material* material): material(material){};
+
 	//
 	// Destructor (must be overriden in subclass)
 	//
-	virtual ~Shape();
+	virtual ~Shape(){};
 
 	//
 	// Shape abstract methods (to be implemented by subclasses)

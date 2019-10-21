@@ -217,6 +217,7 @@ CMakeFiles/raytracer.dir/lights/PointLight.cpp.o
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/lights/PointLight.cpp
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/lights/PointLight.h
 CMakeFiles/raytracer.dir/main/main.cpp.o
+ ../cameras/Pinhole.h
  ../core/Camera.h
  ../core/LightSource.h
  ../core/Material.h
@@ -224,6 +225,8 @@ CMakeFiles/raytracer.dir/main/main.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../lights/PointLight.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/PPMWriter.h
  ../parsers/rapidjson/allocators.h
@@ -247,6 +250,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o
  ../parsers/rapidjson/rapidjson.h
  ../parsers/rapidjson/reader.h
  ../parsers/rapidjson/stream.h
+ ../shapes/Sphere.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/main.cpp
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o
  ../core/Camera.h
