@@ -62,16 +62,16 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
 		for (int x_r = 0; x_r < width; x_r++) {
 			//std::printf("%u %u \n", y_r, x_r );
 
-			// get normalized device coordinates for pixel
+			// // get normalized device coordinates for pixel
 			x_ndc = (x_r + 0.5) / width;
 			y_ndc = (y_r + 0.5) / height;
 
-			/* Get camera space coordinates for pixel. Multiply x by aspect ratio
-			to ensure pixels remain square. Multiply by tangent to account for fov,
-			assuming camera is one unit from sensor */
-			t_fov = tan((float)camera->getFov()/2);
-			x_w = (2 * x_ndc - 1) * aspect * t_fov;
-			y_w = 1 - 2 * y_ndc * t_fov;
+			// /* Get camera space coordinates for pixel. Multiply x by aspect ratio
+			// to ensure pixels remain square. Multiply by tangent to account for fov,
+			// assuming camera is one unit from sensor */
+			float t_fov = tan(camera->getFov() / 2 * M_PI / 180);
+			float x_w = (2 * x_ndc - 1) * t_fov * aspect;
+			float y_w = 1 - (2 * y_ndc * t_fov);
 
 			/* Camera position and pixel position in camera space, assuming
 			camera is located at origin and facing along negative z axis */
@@ -86,7 +86,7 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
 
 			direction = (pixel_world - origin_world).normalize(); // ray direction
 
-			Ray ray = {PRIMARY,origin,direction};
+			Ray ray = {PRIMARY,origin_world,direction};
 			*(pixelbuffer++) = rayTrace(scene, ray, nbounces); // trace ray and save result to pixel
 		}
 	}

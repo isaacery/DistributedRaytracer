@@ -14,7 +14,7 @@ namespace rt{
 class BlinnPhong: public Material{
 public:
     // constructor
-    BlinnPhong(float specular, float alpha, float diffuse, float ambient, Vec3f colour):
+    BlinnPhong(float specular, float alpha, float diffuse, float ambient, float reflectance, Vec3f colour):
         Material(colour) {
             this->specular = specular;
             this->alpha = alpha;
