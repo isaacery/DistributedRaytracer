@@ -32,10 +32,11 @@ int main(int argc, char* argv[]){
 	printf("camera started\n");
 	//TODO: doesn't work
 	Matrix44f m = Matrix44f(1, 0, 0, 0,
-	 						0, 1, 0, 0,
+	 						0, 1, 0, -2,
 							0, 0, 1, 0,
-						 	0, 0, 0, 1); // identity
-	Camera* camera = new Pinhole(1000,1000,90,m);
+						 	0, 0, 0, 1).transpose(); // identity
+
+	Camera* camera = new Pinhole(1000,1000,45,m);
 	printf("camera done!\n");
 	// light
 	printf("light started\n");
@@ -46,7 +47,7 @@ int main(int argc, char* argv[]){
 	printf("shape started\n");
 	Material* mat1 = new BlinnPhong(0.5,10,1,0,0.5,Vec3f(1,0,0));
 	Material* mat2 = new BlinnPhong(0.5,10,1,0,0.5,Vec3f(1));
-	Shape* sphere1 = new Sphere(Vec3f(-2,1,-5), 1, mat1);
+	Shape* sphere1 = new Sphere(Vec3f(-2,1,-5), 1.5, mat1);
 	Shape* sphere2 = new Sphere(Vec3f(2,0,-5), 2, mat2);
 	std::vector<Shape*> shapes = {sphere1,sphere2};
 	printf("shape done!\n");

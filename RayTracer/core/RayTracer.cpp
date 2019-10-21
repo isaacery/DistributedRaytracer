@@ -47,7 +47,7 @@ Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces) {
 Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
 	int x_r, y_r;
 	float x_ndc, y_ndc, x_w, y_w, t_fov;
-	Vec3f origin, pixel, origin_world, pixel_world, direction;
+	Vec3f origin, direction;
 	Ray ray;
 
 	int width = camera->getWidth();
@@ -75,18 +75,14 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
 
 			/* Camera position and pixel position in camera space, assuming
 			camera is located at origin and facing along negative z axis */
-			origin = Vec3f(0,0,0);
-			pixel = Vec3f(x_w,y_w,-1);
-
 			Matrix44f cameraToWorld = camera->getCameraToWorld();
+			cameraToWorld.multVecMatrix(Vec3f(0),origin); // transform origin
+			cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
+			direction = direction.normalize();
 
-			// apply cameraToWorld matrix to convert camera space coords to world space
-			cameraToWorld.multVecMatrix(origin,origin_world);
-			cameraToWorld.multVecMatrix(pixel,pixel_world);
+			//direction = (pixel_world - origin_world).normalize(); // ray direction
 
-			direction = (pixel_world - origin_world).normalize(); // ray direction
-
-			Ray ray = {PRIMARY,origin_world,direction};
+			Ray ray = {PRIMARY,origin,direction};
 			*(pixelbuffer++) = rayTrace(scene, ray, nbounces); // trace ray and save result to pixel
 		}
 	}
