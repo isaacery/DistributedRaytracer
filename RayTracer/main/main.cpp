@@ -19,6 +19,7 @@
 #include "lights/PointLight.h"
 #include "cameras/Pinhole.h"
 #include "shapes/Sphere.h"
+#include "shapes/Triangle.h"
 #include "materials/BlinnPhong.h"
 
 using namespace rt;
@@ -32,11 +33,11 @@ int main(int argc, char* argv[]){
 	printf("camera started\n");
 	//TODO: doesn't work
 	Matrix44f m = Matrix44f(1, 0, 0, 0,
-	 						0, 1, 0, -2,
-							0, 0, 1, 0,
+	 						0, 1, 0, 0,
+							0, 0, 1, 3,
 						 	0, 0, 0, 1).transpose(); // identity
 
-	Camera* camera = new Pinhole(1000,1000,45,m);
+	Camera* camera = new Pinhole(1000,1000,90,m);
 	printf("camera done!\n");
 	// light
 	printf("light started\n");
@@ -45,11 +46,12 @@ int main(int argc, char* argv[]){
 	printf("light done!\n");
 	// shape
 	printf("shape started\n");
-	Material* mat1 = new BlinnPhong(0.5,10,1,0,0.5,Vec3f(1,0,0));
-	Material* mat2 = new BlinnPhong(0.5,10,1,0,0.5,Vec3f(1));
+	Material* mat1 = new BlinnPhong(0.5,10,0.5,0,0,Vec3f(1,0,0));
+	Material* mat2 = new BlinnPhong(0.5,10,0.5,0,0,Vec3f(1));
 	Shape* sphere1 = new Sphere(Vec3f(-2,1,-5), 1.5, mat1);
+	//Shape* triangle = new Triangle(Vec3f(-2,2,-5), Vec3f(-2,0,-5), Vec3f(2,2,-5), mat1);
 	Shape* sphere2 = new Sphere(Vec3f(2,0,-5), 2, mat2);
-	std::vector<Shape*> shapes = {sphere1,sphere2};
+	std::vector<Shape*> shapes = {sphere1, sphere2};
 	printf("shape done!\n");
 	// scene
 	printf("scene started\n");
@@ -57,7 +59,7 @@ int main(int argc, char* argv[]){
 	printf("scene done!\n");
 
 	printf("Rendering started\n");
-	Vec3f* pixelbuffer = RayTracer::render(camera, scene, 4);
+	Vec3f* pixelbuffer = RayTracer::render(camera, scene, 1);
 
 	pixelbuffer = RayTracer::tonemap(pixelbuffer,camera->getWidth()*camera->getHeight());
 	char* out = "out.ppm";

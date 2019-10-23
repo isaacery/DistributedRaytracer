@@ -250,6 +250,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Sphere.h
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Triangle.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../main/main.cpp
 
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../core/Camera.h

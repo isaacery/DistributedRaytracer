@@ -251,6 +251,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o
  ../parsers/rapidjson/reader.h
  ../parsers/rapidjson/stream.h
  ../shapes/Sphere.h
+ ../shapes/Triangle.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/main.cpp
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o
  ../core/Camera.h

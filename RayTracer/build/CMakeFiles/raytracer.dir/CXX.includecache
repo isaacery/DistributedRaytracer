@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../cameras/Pinhole.h
-core/Camera.h
-../cameras/core/Camera.h
-
 ../core/Camera.h
 rapidjson/document.h
 ../core/rapidjson/document.h
@@ -66,14 +62,6 @@ core/Material.h
 core/RayHitStructs.h
 ../core/core/RayHitStructs.h
 
-../lights/PointLight.h
-core/LightSource.h
-../lights/core/LightSource.h
-
-../materials/BlinnPhong.h
-core/Material.h
-../materials/core/Material.h
-
 ../math/geometry.h
 cstdlib
 -
@@ -85,12 +73,6 @@ iomanip
 -
 cmath
 -
-
-../parsers/PPMWriter.h
-iostream
--
-math/geometry.h
-../parsers/math/geometry.h
 
 ../parsers/rapidjson/allocators.h
 rapidjson.h
@@ -190,14 +172,6 @@ limits
 ../rapidjson.h
 ../parsers/rapidjson/rapidjson.h
 
-../parsers/rapidjson/istreamwrapper.h
-stream.h
-../parsers/rapidjson/stream.h
-iosfwd
--
-ios
--
-
 ../parsers/rapidjson/memorystream.h
 stream.h
 ../parsers/rapidjson/stream.h
@@ -278,37 +252,11 @@ rapidjson.h
 encodings.h
 ../parsers/rapidjson/encodings.h
 
-../shapes/Sphere.h
-math/geometry.h
-../shapes/math/geometry.h
-core/Shape.h
-../shapes/core/Shape.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.cpp
+BlinnPhong.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.h
 
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/main.cpp
-iostream
--
-fstream
--
-rapidjson/document.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/rapidjson/document.h
-rapidjson/istreamwrapper.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/rapidjson/istreamwrapper.h
-math/geometry.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/math/geometry.h
-parsers/PPMWriter.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/parsers/PPMWriter.h
-core/RayTracer.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/core/RayTracer.h
-core/Camera.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/core/Camera.h
-core/Scene.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/core/Scene.h
-lights/PointLight.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/lights/PointLight.h
-cameras/Pinhole.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/cameras/Pinhole.h
-shapes/Sphere.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/shapes/Sphere.h
-materials/BlinnPhong.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/materials/BlinnPhong.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.h
+core/Material.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/core/Material.h
 

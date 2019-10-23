@@ -26,7 +26,6 @@ Hit RayTracer::getIntersection(Scene* scene, Ray ray) {
 Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces) {
 	Hit h = getIntersection(scene, ray);
 	if (h.itsct) {
-		//printf("Hit!\n");
 		Material* m = h.mat;
 		return m->shade(scene, h, nbounces);
 	} else {
