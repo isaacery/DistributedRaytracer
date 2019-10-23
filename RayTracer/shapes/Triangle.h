@@ -9,18 +9,24 @@
 
 #include "core/Shape.h"
 
+using namespace rapidjson;
+
 namespace rt{
 
 class Triangle: public Shape{
 
 public:
-    // Constructor
+    // Constructors
+    Triangle();
+
     Triangle(Vec3f v0, Vec3f v1, Vec3f v2, Material* material):
         Shape(material) {
             this->v0 = v0;
             this->v1 = v1;
             this->v2 = v2;
         }
+
+    void createTriangle(Value& shapeSpecs);
 
     Hit intersect(Ray ray);
 

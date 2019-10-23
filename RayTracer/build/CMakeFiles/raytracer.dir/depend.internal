@@ -80,6 +80,26 @@ CMakeFiles/raytracer.dir/core/Camera.cpp.o
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/core/Camera.h
 CMakeFiles/raytracer.dir/core/LightSource.cpp.o
  ../math/geometry.h
+ ../parsers/rapidjson/allocators.h
+ ../parsers/rapidjson/document.h
+ ../parsers/rapidjson/encodedstream.h
+ ../parsers/rapidjson/encodings.h
+ ../parsers/rapidjson/error/error.h
+ ../parsers/rapidjson/internal/biginteger.h
+ ../parsers/rapidjson/internal/diyfp.h
+ ../parsers/rapidjson/internal/ieee754.h
+ ../parsers/rapidjson/internal/meta.h
+ ../parsers/rapidjson/internal/pow10.h
+ ../parsers/rapidjson/internal/stack.h
+ ../parsers/rapidjson/internal/strfunc.h
+ ../parsers/rapidjson/internal/strtod.h
+ ../parsers/rapidjson/internal/swap.h
+ ../parsers/rapidjson/memorystream.h
+ ../parsers/rapidjson/msinttypes/inttypes.h
+ ../parsers/rapidjson/msinttypes/stdint.h
+ ../parsers/rapidjson/rapidjson.h
+ ../parsers/rapidjson/reader.h
+ ../parsers/rapidjson/stream.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/core/LightSource.cpp
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/core/LightSource.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o
@@ -90,6 +110,7 @@ CMakeFiles/raytracer.dir/core/Material.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -121,6 +142,7 @@ CMakeFiles/raytracer.dir/core/RayTracer.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -152,6 +174,7 @@ CMakeFiles/raytracer.dir/core/Scene.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -183,6 +206,7 @@ CMakeFiles/raytracer.dir/core/Shape.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -209,11 +233,51 @@ CMakeFiles/raytracer.dir/core/Shape.cpp.o
 CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o
  ../core/LightSource.h
  ../math/geometry.h
+ ../parsers/rapidjson/allocators.h
+ ../parsers/rapidjson/document.h
+ ../parsers/rapidjson/encodedstream.h
+ ../parsers/rapidjson/encodings.h
+ ../parsers/rapidjson/error/error.h
+ ../parsers/rapidjson/internal/biginteger.h
+ ../parsers/rapidjson/internal/diyfp.h
+ ../parsers/rapidjson/internal/ieee754.h
+ ../parsers/rapidjson/internal/meta.h
+ ../parsers/rapidjson/internal/pow10.h
+ ../parsers/rapidjson/internal/stack.h
+ ../parsers/rapidjson/internal/strfunc.h
+ ../parsers/rapidjson/internal/strtod.h
+ ../parsers/rapidjson/internal/swap.h
+ ../parsers/rapidjson/memorystream.h
+ ../parsers/rapidjson/msinttypes/inttypes.h
+ ../parsers/rapidjson/msinttypes/stdint.h
+ ../parsers/rapidjson/rapidjson.h
+ ../parsers/rapidjson/reader.h
+ ../parsers/rapidjson/stream.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/lights/AreaLight.cpp
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/lights/AreaLight.h
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o
  ../core/LightSource.h
  ../math/geometry.h
+ ../parsers/rapidjson/allocators.h
+ ../parsers/rapidjson/document.h
+ ../parsers/rapidjson/encodedstream.h
+ ../parsers/rapidjson/encodings.h
+ ../parsers/rapidjson/error/error.h
+ ../parsers/rapidjson/internal/biginteger.h
+ ../parsers/rapidjson/internal/diyfp.h
+ ../parsers/rapidjson/internal/ieee754.h
+ ../parsers/rapidjson/internal/meta.h
+ ../parsers/rapidjson/internal/pow10.h
+ ../parsers/rapidjson/internal/stack.h
+ ../parsers/rapidjson/internal/strfunc.h
+ ../parsers/rapidjson/internal/strtod.h
+ ../parsers/rapidjson/internal/swap.h
+ ../parsers/rapidjson/memorystream.h
+ ../parsers/rapidjson/msinttypes/inttypes.h
+ ../parsers/rapidjson/msinttypes/stdint.h
+ ../parsers/rapidjson/rapidjson.h
+ ../parsers/rapidjson/reader.h
+ ../parsers/rapidjson/stream.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/lights/PointLight.cpp
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/lights/PointLight.h
 CMakeFiles/raytracer.dir/main/main.cpp.o
@@ -252,6 +316,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o
  ../parsers/rapidjson/stream.h
  ../shapes/Plane.h
  ../shapes/Sphere.h
+ ../shapes/TriMesh.h
  ../shapes/Triangle.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/main.cpp
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o
@@ -262,6 +327,7 @@ CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -293,6 +359,7 @@ CMakeFiles/raytracer.dir/shapes/BVH.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -324,6 +391,7 @@ CMakeFiles/raytracer.dir/shapes/Plane.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -355,6 +423,7 @@ CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -386,6 +455,7 @@ CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h
@@ -418,6 +488,7 @@ CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o
  ../core/RayTracer.h
  ../core/Scene.h
  ../core/Shape.h
+ ../materials/BlinnPhong.h
  ../math/geometry.h
  ../parsers/rapidjson/allocators.h
  ../parsers/rapidjson/document.h

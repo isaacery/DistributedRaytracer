@@ -10,6 +10,8 @@
 #include "math/geometry.h"
 #include "core/Shape.h"
 
+using namespace rapidjson;
+
 namespace rt{
 
 class Sphere:public Shape{
@@ -22,6 +24,8 @@ public:
 			this->center = center;
 			this->radius = radius;
 		}
+
+	void createSphere(Value& shapeSpecs);
 
 	Hit intersect(Ray ray);
 

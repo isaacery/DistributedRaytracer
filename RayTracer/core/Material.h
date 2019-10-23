@@ -7,9 +7,9 @@
 #define MATERIAL_H_
 
 #include "math/geometry.h"
-#include "core/Scene.h"
 #include "core/RayHitStructs.h"
 #include "core/RayTracer.h"
+#include "rapidjson/document.h"
 
 namespace rt{
 

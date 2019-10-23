@@ -7,6 +7,7 @@
 #define LIGHTSOURCE_H_
 
 #include "math/geometry.h"
+#include "rapidjson/document.h"
 
 namespace rt{
 

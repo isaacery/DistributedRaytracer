@@ -9,6 +9,7 @@
 
 #include "core/LightSource.h"
 
+using namespace rapidjson;
 
 namespace rt{
 
@@ -16,10 +17,14 @@ class PointLight: public LightSource{
 
 public:
     // constructor
+    PointLight();
+
     PointLight(Vec3f position, float intensity):
         LightSource(intensity) {
             this->position = position;
         }
+
+    void createPointLight(Value& lightSpecs);
 
     Vec3f vFrom(Vec3f point) {
         return (position - point); //TODO: normalize?

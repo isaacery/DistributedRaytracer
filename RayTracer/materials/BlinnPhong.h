@@ -23,6 +23,8 @@ public:
             this->reflectance = reflectance;
         }
 
+    void createBlinnPhong(Value& materialSpecs);
+
     // setters and getters TODO: do we need these?
     float getSpecular() const {
         return specular;

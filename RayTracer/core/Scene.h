@@ -2,7 +2,6 @@
  * Scene.h
  *
  */
-
 #ifndef SCENE_H_
 #define SCENE_H_
 
@@ -12,7 +11,6 @@
 
 #include "core/LightSource.h"
 #include "core/Shape.h"
-
 
 using namespace rapidjson;
 
@@ -25,8 +23,8 @@ public:
 
 	Scene(){};
 
-	Scene(std::vector<LightSource*> lightSources, std::vector<Shape*> shapes, float ambientLight):
-		lightSources(lightSources), shapes(shapes), ambientLight(ambientLight){};
+	Scene(std::vector<LightSource*> lightSources, std::vector<Shape*> shapes, Vec3f backgroundColour, float ambientLight):
+		lightSources(lightSources), shapes(shapes), backgroundColour(backgroundColour), ambientLight(ambientLight){};
 
 	void createScene(Value& scenespecs);
 
@@ -43,6 +41,10 @@ public:
 		return ambientLight;
 	}
 
+	Vec3f getBackgroundColour() const {
+		return backgroundColour;
+	}
+
 
 private:
 
@@ -50,6 +52,8 @@ private:
 	std::vector<Shape*> shapes;
 
 	float ambientLight;
+
+	Vec3f backgroundColour;
 
 };
 

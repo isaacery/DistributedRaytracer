@@ -79,6 +79,26 @@ CMakeFiles/raytracer.dir/core/Camera.cpp.o: ../core/Camera.cpp
 CMakeFiles/raytracer.dir/core/Camera.cpp.o: ../core/Camera.h
 
 CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../math/geometry.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/allocators.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/document.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/encodedstream.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/encodings.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/error/error.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/biginteger.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/diyfp.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/ieee754.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/meta.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/pow10.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/stack.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/strfunc.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/strtod.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/internal/swap.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/memorystream.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/msinttypes/inttypes.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/msinttypes/stdint.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/rapidjson.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/reader.h
+CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../core/LightSource.cpp
 CMakeFiles/raytracer.dir/core/LightSource.cpp.o: ../core/LightSource.h
 
@@ -89,6 +109,7 @@ CMakeFiles/raytracer.dir/core/Material.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/core/Material.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/core/Material.cpp.o: ../parsers/rapidjson/document.h
@@ -120,6 +141,7 @@ CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/core/RayTracer.cpp.o: ../parsers/rapidjson/document.h
@@ -151,6 +173,7 @@ CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/core/Scene.cpp.o: ../parsers/rapidjson/document.h
@@ -182,6 +205,7 @@ CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../parsers/rapidjson/document.h
@@ -208,11 +232,51 @@ CMakeFiles/raytracer.dir/core/Shape.cpp.o: ../core/Shape.h
 
 CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../core/LightSource.h
 CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../math/geometry.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/allocators.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/document.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/encodedstream.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/encodings.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/error/error.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/biginteger.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/diyfp.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/ieee754.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/meta.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/pow10.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/stack.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/strfunc.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/strtod.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/internal/swap.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/memorystream.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/msinttypes/inttypes.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/msinttypes/stdint.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/rapidjson.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/reader.h
+CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../lights/AreaLight.cpp
 CMakeFiles/raytracer.dir/lights/AreaLight.cpp.o: ../lights/AreaLight.h
 
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../core/LightSource.h
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../math/geometry.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/allocators.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/document.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/encodedstream.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/encodings.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/error/error.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/biginteger.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/diyfp.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/ieee754.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/meta.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/pow10.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/stack.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/strfunc.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/strtod.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/internal/swap.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/memorystream.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/msinttypes/inttypes.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/msinttypes/stdint.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/rapidjson.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/reader.h
+CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../lights/PointLight.cpp
 CMakeFiles/raytracer.dir/lights/PointLight.cpp.o: ../lights/PointLight.h
 
@@ -251,6 +315,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Plane.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Sphere.h
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/TriMesh.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Triangle.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../main/main.cpp
 
@@ -261,6 +326,7 @@ CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../parsers/rapidjson/document.h
@@ -292,6 +358,7 @@ CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../parsers/rapidjson/document.h
@@ -323,6 +390,7 @@ CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/document.h
@@ -354,6 +422,7 @@ CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../parsers/rapidjson/document.h
@@ -385,6 +454,7 @@ CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../parsers/rapidjson/document.h
@@ -417,6 +487,7 @@ CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../core/RayHitStructs.h
 CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../core/RayTracer.h
 CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../core/Scene.h
 CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../materials/BlinnPhong.h
 CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../math/geometry.h
 CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../parsers/rapidjson/allocators.h
 CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o: ../parsers/rapidjson/document.h

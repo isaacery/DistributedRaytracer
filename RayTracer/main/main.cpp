@@ -21,12 +21,75 @@
 #include "shapes/Sphere.h"
 #include "shapes/Triangle.h"
 #include "shapes/Plane.h"
+#include "shapes/TriMesh.h"
 #include "materials/BlinnPhong.h"
 
+using std::string;
 using namespace rt;
 using namespace rapidjson;
 
-bool test = true;
+// had to place here to avoid circular dependencies
+Scene* parseScene(Value& scenespecs) {
+	/* parse shapes */
+	Shape* s;
+	Value& shps = scenespecs["shapes"];
+	std::vector<Shape*> shapes;
+	if (shps.IsArray()) {
+		std::cout<<"Parsing "<<shps.Size()<<" shapes\n";
+		for (SizeType i = 0; i < shps.Size(); i++) {
+			Value lightSpecs = shps[i].GetObject();
+			string shapeType = lightSpecs["type"].GetString();
+			if (shapeType.compare("sphere") == 0) {
+				Sphere* o = new Sphere();
+				o->createSphere(lightSpecs);
+				s = o;
+			} else if (shapeType.compare("plane") == 0) {
+				Plane* o = new Plane();
+				o->createPlane(lightSpecs);
+				s = o;
+			} else if (shapeType.compare("triangle") == 0) {
+				Triangle* o = new Triangle();
+				o->createTriangle(lightSpecs);
+				s = o;
+			} else if (shapeType.compare("trimesh") == 0) {
+				TriMesh* o = new TriMesh();
+				o->createTriMesh(lightSpecs);
+				s = o;
+			}
+			shapes.push_back(s);
+		}
+	}
+	LightSource* l;
+	Value& lts = scenespecs["lightsources"];
+	std::vector<LightSource*> lights;
+	if (lts.IsArray()) {
+		std::cout<<"Parsing "<<lts.Size()<<" shapes\n";
+		for (SizeType i = 0; i < lts.Size(); i++) {
+			Value lightSpecs = lts[i].GetObject();
+			string lightType = lightSpecs["type"].GetString();
+			if (lightType.compare("pointlight") == 0) {
+				PointLight* o = new PointLight();
+				o->createPointLight(lightSpecs);
+				l = o;
+			} /*else if (lightType.compare("arealight") == 0) {
+				AreaLight* o = new AreaLight();
+				o->createPlane(lightSpecs);
+				l = o;
+			} */
+			lights.push_back(l);
+		}
+	}
+	Value& bkg = scenespecs["backgroundcolour"]; // parse background colour
+	float x = bkg[0].GetFloat();
+	float y = bkg[1].GetFloat();
+	float z = bkg[2].GetFloat();
+	Vec3f backgroundColour = Vec3f(x,y,z);
+
+	float ambient = scenespecs["ambient"].GetFloat();
+	/* parse lights */
+
+	return new Scene(lights,shapes,backgroundColour,ambient);
+}
 
 int main(int argc, char* argv[]){
 	printf("main started\n");
@@ -43,7 +106,7 @@ int main(int argc, char* argv[]){
 	// light
 	printf("light started\n");
 	LightSource* light = new PointLight(Vec3f(0,0,0),1);
-	std::vector<LightSource*> lights = {light};
+	std::vector<LightSource*> lights2 = {light};
 	printf("light done!\n");
 	// shape
 	printf("shape started\n");
@@ -53,11 +116,11 @@ int main(int argc, char* argv[]){
 	Shape* triangle = new Triangle(Vec3f(0.1,0.1,0), Vec3f(-0.1,-0.1,0), Vec3f(0.1,-0.1,0), mat1);
 	Shape* sphere2 = new Sphere(Vec3f(2,0,-5), 2, mat2);
 	Shape* plane = new Plane(Vec3f(0,1,0), -2, mat2);
-	std::vector<Shape*> shapes = {sphere1, sphere2, plane};
+	std::vector<Shape*> shapes2 = {sphere1, sphere2, plane};
 	printf("shape done!\n");
 	// scene
 	printf("scene started\n");
-	Scene* scene = new Scene(lights,shapes,0.25); //TODO: intensity in [0,1]?
+	Scene* scene = new Scene(lights2,shapes2,Vec3f(0),0.25); //TODO: intensity in [0,1]?
 	printf("scene done!\n");
 
 	printf("Rendering started\n");

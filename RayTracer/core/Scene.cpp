@@ -6,7 +6,6 @@
 
 
 
-
 namespace rt{
 
 /**
@@ -15,8 +14,6 @@ namespace rt{
  * @param scenespecs the json scene specificatioon
  */
 void Scene::createScene(Value& scenespecs){
-	//----------parse json object to populate scene-----------
-
 }
 
 } //namespace rt
