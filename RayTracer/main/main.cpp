@@ -20,6 +20,7 @@
 #include "cameras/Pinhole.h"
 #include "shapes/Sphere.h"
 #include "shapes/Triangle.h"
+#include "shapes/Plane.h"
 #include "materials/BlinnPhong.h"
 
 using namespace rt;
@@ -46,12 +47,13 @@ int main(int argc, char* argv[]){
 	printf("light done!\n");
 	// shape
 	printf("shape started\n");
-	Material* mat1 = new BlinnPhong(0.5,10,0.5,0,0,Vec3f(1,0,0));
+	Material* mat1 = new BlinnPhong(0.5,10,0.5,0,0.5,Vec3f(1,0,0));
 	Material* mat2 = new BlinnPhong(0.5,10,0.5,0,0,Vec3f(1));
 	Shape* sphere1 = new Sphere(Vec3f(-2,1,-5), 1.5, mat1);
-	//Shape* triangle = new Triangle(Vec3f(-2,2,-5), Vec3f(-2,0,-5), Vec3f(2,2,-5), mat1);
+	Shape* triangle = new Triangle(Vec3f(0.1,0.1,0), Vec3f(-0.1,-0.1,0), Vec3f(0.1,-0.1,0), mat1);
 	Shape* sphere2 = new Sphere(Vec3f(2,0,-5), 2, mat2);
-	std::vector<Shape*> shapes = {sphere1, sphere2};
+	Shape* plane = new Plane(Vec3f(0,1,0), -2, mat2);
+	std::vector<Shape*> shapes = {sphere1, sphere2, plane};
 	printf("shape done!\n");
 	// scene
 	printf("scene started\n");

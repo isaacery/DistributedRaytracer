@@ -250,6 +250,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o
  ../parsers/rapidjson/rapidjson.h
  ../parsers/rapidjson/reader.h
  ../parsers/rapidjson/stream.h
+ ../shapes/Plane.h
  ../shapes/Sphere.h
  ../shapes/Triangle.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/main/main.cpp
@@ -315,6 +316,37 @@ CMakeFiles/raytracer.dir/shapes/BVH.cpp.o
  ../parsers/rapidjson/stream.h
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/BVH.cpp
  /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/BVH.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o
+ ../core/Camera.h
+ ../core/LightSource.h
+ ../core/Material.h
+ ../core/RayHitStructs.h
+ ../core/RayTracer.h
+ ../core/Scene.h
+ ../core/Shape.h
+ ../math/geometry.h
+ ../parsers/rapidjson/allocators.h
+ ../parsers/rapidjson/document.h
+ ../parsers/rapidjson/encodedstream.h
+ ../parsers/rapidjson/encodings.h
+ ../parsers/rapidjson/error/error.h
+ ../parsers/rapidjson/internal/biginteger.h
+ ../parsers/rapidjson/internal/diyfp.h
+ ../parsers/rapidjson/internal/ieee754.h
+ ../parsers/rapidjson/internal/meta.h
+ ../parsers/rapidjson/internal/pow10.h
+ ../parsers/rapidjson/internal/stack.h
+ ../parsers/rapidjson/internal/strfunc.h
+ ../parsers/rapidjson/internal/strtod.h
+ ../parsers/rapidjson/internal/swap.h
+ ../parsers/rapidjson/memorystream.h
+ ../parsers/rapidjson/msinttypes/inttypes.h
+ ../parsers/rapidjson/msinttypes/stdint.h
+ ../parsers/rapidjson/rapidjson.h
+ ../parsers/rapidjson/reader.h
+ ../parsers/rapidjson/stream.h
+ /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Plane.cpp
+ /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Plane.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o
  ../core/Camera.h
  ../core/LightSource.h

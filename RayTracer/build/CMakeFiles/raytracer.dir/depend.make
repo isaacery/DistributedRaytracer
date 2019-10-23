@@ -249,6 +249,7 @@ CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/msinttypes/stdint
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../parsers/rapidjson/stream.h
+CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Plane.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Sphere.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../shapes/Triangle.h
 CMakeFiles/raytracer.dir/main/main.cpp.o: ../main/main.cpp
@@ -314,6 +315,37 @@ CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../parsers/rapidjson/stream.h
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../shapes/BVH.cpp
 CMakeFiles/raytracer.dir/shapes/BVH.cpp.o: ../shapes/BVH.h
+
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/Camera.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/LightSource.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/Material.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/RayHitStructs.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/RayTracer.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/Scene.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../core/Shape.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../math/geometry.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/allocators.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/document.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/encodedstream.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/encodings.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/error/error.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/biginteger.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/diyfp.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/ieee754.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/meta.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/pow10.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/stack.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/strfunc.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/strtod.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/internal/swap.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/memorystream.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/msinttypes/inttypes.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/msinttypes/stdint.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/rapidjson.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/reader.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../parsers/rapidjson/stream.h
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../shapes/Plane.cpp
+CMakeFiles/raytracer.dir/shapes/Plane.cpp.o: ../shapes/Plane.h
 
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../core/Camera.h
 CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o: ../core/LightSource.h

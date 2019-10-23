@@ -13,6 +13,7 @@ namespace rt{
 const float EPSILON = 0.001; // distance above surface from which to cast ray to avoid rounding errors
 
 Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
+    //return Vec3f(1);
     float k_a = ambient;
     float k_d = diffuse;
     float k_s = specular;
@@ -27,7 +28,8 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
     for (LightSource* l : scene->getLightSources()) {
         Vec3f light_v = l->vFrom(h.point);
         Vec3f light_dir = light_v.normalize(); // get direction from intersection point to light
-        float d_m = 1/(light_v.length() * light_v.length()); // inverse distance squared
+        float light_dist = light_v.length();
+        float d_m = 1/(light_dist * light_dist); // inverse distance squared
         // reflect light_dir about normal
         Vec3f light_reflection_dir = (-light_dir) - 2 * n * (-light_dir).dotProduct(n);
 
@@ -35,7 +37,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
         Ray shadow_ray = {SHADOW,h.point+(EPSILON*light_dir),light_dir}; // ray to cast toward light
         Hit s = RayTracer::getIntersection(scene, shadow_ray);
         // if there's a shape between point and light, skip to next light
-        if (s.itsct) continue; // TODO: need to avoid the case where shapes are behind lights
+        if (s.itsct && s.t < light_dist) continue; // TODO: need to avoid the case where shapes are behind lights
 
         /* calculate diffuse and specular shading */
         i_p += (l->getIntersity() * k_d * std::max(0.f,(light_dir).dotProduct(n))) * d_m; // diffuse
