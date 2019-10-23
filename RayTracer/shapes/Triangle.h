@@ -25,10 +25,14 @@ public:
     Hit intersect(Ray ray);
 
 private:
+    /* v0 -- v1
+        |   /
+        |  /
+        | /
+       v2      */
     Vec3f v0;
     Vec3f v1;
     Vec3f v2;
-
 };
 
 

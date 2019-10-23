@@ -27,6 +27,10 @@ public:
 
 	Shape(Material* material): material(material){};
 
+	void setMaterial(Material* material) {
+		this->material = material;
+	}
+
 	//
 	// Destructor (must be overriden in subclass)
 	//

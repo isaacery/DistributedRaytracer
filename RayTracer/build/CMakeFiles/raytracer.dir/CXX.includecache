@@ -252,21 +252,17 @@ rapidjson.h
 encodings.h
 ../parsers/rapidjson/encodings.h
 
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.cpp
-BlinnPhong.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.h
+../shapes/Triangle.h
+core/Shape.h
+../shapes/core/Shape.h
 
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.h
-core/Material.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/core/Material.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/TriMesh.cpp
+TriMesh.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/TriMesh.h
 
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Plane.cpp
-Plane.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Plane.h
-
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Plane.h
-math/geometry.h
-/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/math/geometry.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/TriMesh.h
 core/Shape.h
 /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/core/Shape.h
+shapes/Triangle.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/shapes/Triangle.h
 

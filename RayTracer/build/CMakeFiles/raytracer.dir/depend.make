@@ -406,6 +406,7 @@ CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../parsers/rapidjson/msinttypes/s
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../parsers/rapidjson/rapidjson.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../parsers/rapidjson/reader.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../parsers/rapidjson/stream.h
+CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../shapes/Triangle.h
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../shapes/TriMesh.cpp
 CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o: ../shapes/TriMesh.h
 
