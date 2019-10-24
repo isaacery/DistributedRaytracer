@@ -12,6 +12,19 @@ namespace rt{
 
 const float EPSILON = 0.001; // distance above surface from which to cast ray to avoid rounding errors
 
+void BlinnPhong::createBlinnPhong(Value& materialSpecs) {
+    ambient = materialSpecs["ka"].GetFloat();
+    specular = materialSpecs["ks"].GetFloat();
+    alpha = materialSpecs["alpha"].GetFloat();
+    diffuse = materialSpecs["diffuse"].GetFloat();
+    reflectance = materialSpecs["reflectance"].GetFloat();
+    Value& c = materialSpecs["colour"]; // parse v0
+    float x = c[0].GetFloat();
+    float y = c[1].GetFloat();
+    float z = c[2].GetFloat();
+    colour = Vec3f(x,y,z);
+}
+
 Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
     //return Vec3f(1);
     float k_a = ambient;

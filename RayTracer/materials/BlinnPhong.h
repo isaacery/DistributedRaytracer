@@ -13,7 +13,9 @@ namespace rt{
 
 class BlinnPhong: public Material{
 public:
-    // constructor
+    // constructors
+    BlinnPhong():Material(){};
+
     BlinnPhong(float specular, float alpha, float diffuse, float ambient, float reflectance, Vec3f colour):
         Material(colour) {
             this->specular = specular;
@@ -22,6 +24,8 @@ public:
             this->ambient = ambient;
             this->reflectance = reflectance;
         }
+
+    void createBlinnPhong(Value& materialSpecs);
 
     // setters and getters TODO: do we need these?
     float getSpecular() const {

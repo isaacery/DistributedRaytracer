@@ -7,12 +7,15 @@
 #define LIGHTSOURCE_H_
 
 #include "math/geometry.h"
+#include "rapidjson/document.h"
 
 namespace rt{
 
 class LightSource{
 public:
-    // constructor
+    // constructors
+    LightSource(){};
+
     LightSource(float intensity): intensity(intensity){};
 
     float getIntersity() const {

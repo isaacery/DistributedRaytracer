@@ -10,6 +10,7 @@
 #include "core/Scene.h"
 #include "core/RayHitStructs.h"
 #include "core/RayTracer.h"
+#include "rapidjson/document.h"
 
 namespace rt{
 
@@ -17,6 +18,8 @@ class Scene;
 
 class Material{
 public:
+    Material(){};
+
     Material(Vec3f colour): colour(colour){};
     // shade material based on scene and intersection h
     virtual Vec3f shade(Scene* scene, Hit h, int nbounces) = 0;

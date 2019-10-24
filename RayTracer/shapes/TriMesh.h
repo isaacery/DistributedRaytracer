@@ -9,14 +9,24 @@
 
 #include "core/Shape.h"
 #include "shapes/Triangle.h"
+#include "core/Material.h"
+
+using namespace rapidjson;
 
 namespace rt{
 
 // TODO: NAIVE APPROACH
 
-class TriMesh: public Shape{
+class Material;
+struct Hit;
+struct Ray;
+
+using namespace rapidjson;
+
+class TriMesh:public Shape{
 public:
     // constructors
+    TriMesh():Shape(){};
     TriMesh(std::vector<Triangle*> triangles, Material* material):
         Shape(material) {
             // update material of every triangle to material of mesh
@@ -25,6 +35,15 @@ public:
             }
             this->triangles = triangles;
         }
+
+    void setMaterial(Material* mat) {
+        material = mat;
+        for (Triangle* tri : triangles) {
+            tri->setMaterial(material);
+        }
+    }
+
+    void createTriMesh(Value& shapeSpecs);
 
     Hit intersect(Ray ray);
 

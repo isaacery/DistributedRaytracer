@@ -8,6 +8,15 @@
 
 namespace rt{
 
+void Sphere::createSphere(Value& shapeSpecs) {
+	Value& c = shapeSpecs["center"]; // parse center
+	float x = c[0].GetFloat();
+	float y = c[1].GetFloat();
+	float z = c[2].GetFloat();
+	this->center = Vec3f(x,y,z);
+	radius = shapeSpecs["radius"].GetFloat(); // parse radius
+}
+
 
 /**
  * Computes whether a ray hit the specific instance of a sphere shape and returns the hit data

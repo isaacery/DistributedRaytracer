@@ -8,6 +8,7 @@
 
 #include "core/Material.h"
 #include "core/RayHitStructs.h"
+#include "rapidjson/document.h"
 
 namespace rt{
 
@@ -23,7 +24,7 @@ public:
 	//
 	// Constructors
 	//
-	Shape();
+	Shape(){};
 
 	Shape(Material* material): material(material){};
 

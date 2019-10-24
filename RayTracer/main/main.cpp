@@ -16,19 +16,22 @@
 #include "core/Camera.h"
 #include "core/Scene.h"
 
+#include "core/Parser.h"
+
 #include "lights/PointLight.h"
 #include "cameras/Pinhole.h"
 #include "shapes/Sphere.h"
 #include "shapes/Triangle.h"
 #include "shapes/Plane.h"
+#include "shapes/TriMesh.h"
 #include "materials/BlinnPhong.h"
 
+using std::string;
 using namespace rt;
 using namespace rapidjson;
 
-bool test = true;
-
 int main(int argc, char* argv[]){
+	/*
 	printf("main started\n");
 	// camera
 	printf("camera started\n");
@@ -43,7 +46,7 @@ int main(int argc, char* argv[]){
 	// light
 	printf("light started\n");
 	LightSource* light = new PointLight(Vec3f(0,0,0),1);
-	std::vector<LightSource*> lights = {light};
+	std::vector<LightSource*> lights2 = {light};
 	printf("light done!\n");
 	// shape
 	printf("shape started\n");
@@ -53,11 +56,11 @@ int main(int argc, char* argv[]){
 	Shape* triangle = new Triangle(Vec3f(0.1,0.1,0), Vec3f(-0.1,-0.1,0), Vec3f(0.1,-0.1,0), mat1);
 	Shape* sphere2 = new Sphere(Vec3f(2,0,-5), 2, mat2);
 	Shape* plane = new Plane(Vec3f(0,1,0), -2, mat2);
-	std::vector<Shape*> shapes = {sphere1, sphere2, plane};
+	std::vector<Shape*> shapes2 = {sphere1, sphere2, plane};
 	printf("shape done!\n");
 	// scene
 	printf("scene started\n");
-	Scene* scene = new Scene(lights,shapes,0.25); //TODO: intensity in [0,1]?
+	Scene* scene = new Scene(lights2,shapes2,Vec3f(0),0.25); //TODO: intensity in [0,1]?
 	printf("scene done!\n");
 
 	printf("Rendering started\n");
@@ -67,8 +70,8 @@ int main(int argc, char* argv[]){
 	char* out = "out.ppm";
 	PPMWriter::PPMWriter(camera->getWidth(), camera->getHeight(), pixelbuffer, out);
 	printf("Rendering completed\n");
-	return 0;
-	/*
+	return 0; */
+
 	// parse commandline arguments
 	char* inputFile=argv[1];  // first command line argument holds the path to the json input file
 	char* outputFile=argv[2]; // second command line argument holds the path to the output image file
@@ -82,14 +85,14 @@ int main(int argc, char* argv[]){
 	d.ParseStream(is);
 
 	// generate a camera according to the input file
-	Camera* camera=Camera::createCamera(d["camera"]);
+	Camera* camera = Camera::createCamera(d["camera"]);
 
 	// print camera data (based on the input file provided)
 	camera->printCamera();
 
 	// generate the scene according to the input file
-	Scene* scene=new Scene();
-	scene->createScene(d["scene"]);
+	Scene* scene = new Scene();
+	Parser::parseScene(d["scene"], scene);
 
 	// Main function, render scene
 	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt());
@@ -109,5 +112,4 @@ int main(int argc, char* argv[]){
 	PPMWriter::PPMWriter(camera->getWidth(), camera->getHeight(), pixelbuffer, outputFile);
 
 	delete pixelbuffer;
-	*/
 }
