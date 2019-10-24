@@ -11,6 +11,7 @@
 
 namespace rt{
 
+using namespace rapidjson;
 class BlinnPhong: public Material{
 public:
     // constructors

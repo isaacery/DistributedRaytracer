@@ -31,7 +31,7 @@ public:
         //Value& mats = d["materials"];
         //std::map<string,Material*> materials;
         if (mats.IsArray()) {
-    		std::cout<<"Parsing "<<mats.Size()<<" shapes\n";
+    		std::cout<<"Parsing "<<mats.Size()<<" materials\n";
     		for (SizeType i = 0; i < mats.Size(); i++) {
     			Value materialSpecs = mats[i].GetObject();
     			string materialType = materialSpecs["type"].GetString();
@@ -79,8 +79,6 @@ public:
 
     static void parseLights(Value& lts, std::vector<LightSource*>& lights) {
         LightSource* l;
-        //Value& lts = d["lightsources"];
-        //std::vector<LightSource*> lights;
         if (lts.IsArray()) {
             std::cout<<"Parsing "<<lts.Size()<<" lights\n";
             for (SizeType i = 0; i < lts.Size(); i++) {
@@ -101,24 +99,20 @@ public:
     }
 
     /* parse scene information from raytracer input file */
-    static void parseScene(Value& d, Scene* scene) {
+    static Scene* parseScene(Value& d) {
         std::map<string,Material*> materials;
         std::vector<Shape*> shapes;
     	std::vector<LightSource*> lights;
-
         parseMaterials(d["materials"], materials); // parse materials
         parseShapes(d["shapes"], shapes, materials); // parse shapes
-        parseLights(d["lights"], lights); // parse lights
-
-        Value& bkg = d["backgroundColour"]; // parse background colour
-    	float r = bkg[0].GetFloat();
-    	float g = bkg[1].GetFloat();
-    	float b = bkg[2].GetFloat();
+        parseLights(d["lightsources"], lights); // parse lights
+    	float r = d["backgroundcolour"][0].GetFloat(); // parse background colour
+    	float g = d["backgroundcolour"][1].GetFloat();
+    	float b = d["backgroundcolour"][2].GetFloat();
     	Vec3f backgroundColour = Vec3f(r,g,b);
-
     	float ambient = d["ambient"].GetFloat(); // parse ambient intensity
 
-        scene = new Scene(lights, shapes, backgroundColour, ambient);
+        return new Scene(lights, shapes, backgroundColour, ambient);
     }
 
 };

@@ -9,10 +9,9 @@
 namespace rt{
 
 void Sphere::createSphere(Value& shapeSpecs) {
-	Value& c = shapeSpecs["center"]; // parse center
-	float x = c[0].GetFloat();
-	float y = c[1].GetFloat();
-	float z = c[2].GetFloat();
+	float x = shapeSpecs["center"][0].GetFloat();
+	float y = shapeSpecs["center"][1].GetFloat();
+	float z = shapeSpecs["center"][2].GetFloat();
 	this->center = Vec3f(x,y,z);
 	radius = shapeSpecs["radius"].GetFloat(); // parse radius
 }

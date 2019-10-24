@@ -16,17 +16,15 @@ void BlinnPhong::createBlinnPhong(Value& materialSpecs) {
     ambient = materialSpecs["ka"].GetFloat();
     specular = materialSpecs["ks"].GetFloat();
     alpha = materialSpecs["alpha"].GetFloat();
-    diffuse = materialSpecs["diffuse"].GetFloat();
+    diffuse = materialSpecs["kd"].GetFloat();
     reflectance = materialSpecs["reflectance"].GetFloat();
-    Value& c = materialSpecs["colour"]; // parse v0
-    float x = c[0].GetFloat();
-    float y = c[1].GetFloat();
-    float z = c[2].GetFloat();
-    colour = Vec3f(x,y,z);
+    float r = materialSpecs["colour"][0].GetFloat();
+    float g = materialSpecs["colour"][1].GetFloat();
+    float b = materialSpecs["colour"][2].GetFloat();
+    colour = Vec3f(r,g,b);
 }
 
 Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
-    //return Vec3f(1);
     float k_a = ambient;
     float k_d = diffuse;
     float k_s = specular;

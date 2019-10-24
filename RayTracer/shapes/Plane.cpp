@@ -9,10 +9,9 @@
 namespace rt{
 
 void Plane::createPlane(Value& shapeSpecs) {
-	Value& normal = shapeSpecs["normal"]; // parse normal
-	float x = normal[0].GetFloat();
-	float y = normal[1].GetFloat();
-	float z = normal[2].GetFloat();
+	float x = shapeSpecs["normal"][0].GetFloat();
+	float y = shapeSpecs["normal"][1].GetFloat();
+	float z = shapeSpecs["normal"][2].GetFloat();
 	this->n = Vec3f(x,y,z).normalize();
 	float distance = shapeSpecs["distance"].GetFloat(); // parse distance
 	this->p = this->n * distance;

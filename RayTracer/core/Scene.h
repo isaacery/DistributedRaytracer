@@ -26,7 +26,16 @@ public:
 	Scene(std::vector<LightSource*> lightSources, std::vector<Shape*> shapes, Vec3f backgroundColour, float ambientLight):
 		lightSources(lightSources), shapes(shapes), backgroundColour(backgroundColour), ambientLight(ambientLight){};
 
-	void createScene(Value& scenespecs);
+	void print() {
+		printf("Shapes:\n");
+		for (Shape* s : shapes) {
+			printf("shape\n");
+		}
+		printf("Lights:\n");
+		for (LightSource* l : lightSources) {
+			printf("light\n");
+		}
+	}
 
 	// getters
 	std::vector<Shape*> getShapes() const {
