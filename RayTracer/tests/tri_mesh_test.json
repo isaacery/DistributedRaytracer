@@ -1,0 +1,88 @@
+{   "nbounces":1,
+    "camera":{
+        "type":"pinhole",
+    	"width":1000,
+    	"height":1000,
+    	"fov":90
+    },
+    "scene":{
+        "ambient": 0.25,
+    	"backgroundcolour": [0.0, 0.00, 0.00],
+        "materials":[
+            {
+            "name": "mat1",
+            "type": "blinnphong",
+            "ka": 0,
+            "ks": 0.5,
+            "kd": 0.5,
+            "alpha": 10,
+            "reflectance": 0.5,
+            "colour": [1.0, 0.0, 0.0]
+            },
+            {
+            "name": "mat2",
+            "type": "blinnphong",
+            "ka": 0,
+            "ks": 0.5,
+            "kd": 0.5,
+            "alpha": 10,
+            "reflectance": 0,
+            "colour": [1.0, 1.0, 1.0]
+            }
+        ],
+    	"lightsources":[
+    		{
+    		"type":"pointlight",
+    		"position": [0.0, 0.0, 1],
+    		"intensity": 1
+    		}
+    	],
+    	"shapes":[
+		{
+    		"type":"sphere",
+    		"center": [-2, 1, -5],
+    		"radius":1.5,
+    		"material": "mat1"
+		},
+		{
+    		"type":"sphere",
+    		"center": [2, 0, -5],
+    		"radius":2,
+    		"material": "mat2"
+        },
+        {
+            "type":"plane",
+            "normal": [0, 1, 0],
+            "distance": -2,
+            "material": "mat2"
+        },
+        {
+            "type":"trianglemesh",
+            "triangles": [
+                {
+                    "type":"triangle",
+                    "v0": [1,-2,0],
+                    "v1": [0,-2,-2],
+                    "v2": [1,0,-1],
+                    "material": "mat2"
+                },
+                {
+                    "type":"triangle",
+                    "v0": [1,-2,0],
+                    "v1": [2,-2,-2],
+                    "v2": [1,0,-1],
+                    "material": "mat2"
+                },
+                {
+                    "type":"triangle",
+                    "v0": [0,-2,-2],
+                    "v1": [2,-2,-2],
+                    "v2": [1,0,-1],
+                    "material": "mat2"
+                }
+            ],
+            "material": "mat2"
+        }
+    	]
+    }
+}
