@@ -8,12 +8,11 @@
 namespace rt{
 
 void TriMesh::createTriMesh(Value& shapeSpecs) {
-    Value trianglesSpecs = shapeSpecs["triangles"].GetObject();
-    if (trianglesSpecs.IsArray()) {
+    if (shapeSpecs["triangles"].IsArray()) {
         Triangle* triangle;
-        for (SizeType i = 0; i < trianglesSpecs.Size(); i++) {
+        for (SizeType i = 0; i < shapeSpecs["triangles"].Size(); i++) {
             triangle = new Triangle();
-            Value triangleSpecs = trianglesSpecs[i].GetObject();
+            Value triangleSpecs = shapeSpecs["triangles"][i].GetObject();
             triangle->createTriangle(triangleSpecs);
             triangles.push_back(triangle);
         }

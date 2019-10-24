@@ -66,9 +66,10 @@ public:
     				Triangle* o = new Triangle();
     				o->createTriangle(shapeSpecs);
     				s = o;
-    			} else if (shapeType.compare("trimesh") == 0) {
+    			} else if (shapeType.compare("trianglemesh") == 0) {
     				TriMesh* o = new TriMesh();
     				o->createTriMesh(shapeSpecs);
+                    o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
     				s = o;
     			}
                 s->setMaterial(materials[shapeSpecs["material"].GetString()]);

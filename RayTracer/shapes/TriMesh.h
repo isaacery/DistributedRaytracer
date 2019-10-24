@@ -30,14 +30,12 @@ public:
     TriMesh(std::vector<Triangle*> triangles, Material* material):
         Shape(material) {
             // update material of every triangle to material of mesh
-            for (Triangle* tri : triangles) {
-                tri->setMaterial(material);
-            }
             this->triangles = triangles;
+            setMaterial(material);
         }
 
-    void setMaterial(Material* mat) {
-        material = mat;
+    void setMaterial(Material* material) {
+        this->material = material;
         for (Triangle* tri : triangles) {
             tri->setMaterial(material);
         }

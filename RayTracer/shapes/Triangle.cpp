@@ -48,6 +48,9 @@ Hit Triangle::intersect(Ray ray) {
         // construct and return hit
         Vec3f p = ray.o + t * ray.d; // point hit
         Vec3f n = e0.crossProduct(e1).normalize();
+		if (ray.d.dotProduct(n) > 0) {
+			n = -n; // flip normal if normal faces same dir as ray
+		}
         Hit h = {true,t,ray,n,p,material};
         return h;
     } else { // intersection is behind origin
