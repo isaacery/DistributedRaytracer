@@ -34,14 +34,16 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 
 	//return camera object based on camera specs
 
+	Matrix44f m = Matrix44f(1, 0, 0, 0,
+						    0, 1, 0, 0,
+						    0, 0, 1, 3,
+						    0, 0, 0, 1).transpose();
+
 	if (cameraType.compare("pinhole")==0){
 		return new Pinhole(cameraSpecs["width"].GetInt(),
 				cameraSpecs["height"].GetInt(),
 				cameraSpecs["fov"].GetInt(),
-				Matrix44f(1, 0, 0, 0,
-						  0, 1, 0, 0,
-						  0, 0, 1, 3,
-						  0, 0, 0, 1).transpose());
+				m);
 
 	}else if (cameraType.compare("thinlens")==0){
 		return new ThinLens();

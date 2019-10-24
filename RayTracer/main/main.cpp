@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
 	printf("Rendering completed\n");
 	return 0; */
 
-	
+
 	// parse commandline arguments
 	char* inputFile=argv[1];  // first command line argument holds the path to the json input file
 	char* outputFile=argv[2]; // second command line argument holds the path to the output image file
@@ -93,8 +93,6 @@ int main(int argc, char* argv[]){
 
 	// generate the scene according to the input file
 	Scene* scene = Parser::parseScene(d["scene"]);
-
-	scene->print();
 
 	// Main function, render scene
 	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt());
