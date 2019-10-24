@@ -428,6 +428,16 @@ math/geometry.h
 core/Shape.h
 /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/core/Shape.h
 
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Quad.cpp
+Quad.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Quad.h
+
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Quad.h
+math/geometry.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/math/geometry.h
+core/Shape.h
+/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/core/Shape.h
+
 /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Sphere.cpp
 Sphere.h
 /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Sphere.h

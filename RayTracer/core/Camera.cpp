@@ -23,7 +23,6 @@ namespace rt{
  *
  */
 Camera* Camera::createCamera(Value& cameraSpecs){
-
 	//check if cameratype is defined
 
 	if (!cameraSpecs.HasMember("type")){

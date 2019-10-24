@@ -420,9 +420,32 @@ CMakeFiles/raytracer.dir/shapes/Plane.cpp.o.provides: CMakeFiles/raytracer.dir/s
 
 CMakeFiles/raytracer.dir/shapes/Plane.cpp.o.provides.build: CMakeFiles/raytracer.dir/shapes/Plane.cpp.o
 
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.o: CMakeFiles/raytracer.dir/flags.make
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.o: ../shapes/Quad.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles $(CMAKE_PROGRESS_17)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/raytracer.dir/shapes/Quad.cpp.o"
+	/opt/rh/devtoolset-7/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/raytracer.dir/shapes/Quad.cpp.o -c /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Quad.cpp
+
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/raytracer.dir/shapes/Quad.cpp.i"
+	/opt/rh/devtoolset-7/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Quad.cpp > CMakeFiles/raytracer.dir/shapes/Quad.cpp.i
+
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/raytracer.dir/shapes/Quad.cpp.s"
+	/opt/rh/devtoolset-7/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/shapes/Quad.cpp -o CMakeFiles/raytracer.dir/shapes/Quad.cpp.s
+
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.requires:
+.PHONY : CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.requires
+
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.provides: CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.requires
+	$(MAKE) -f CMakeFiles/raytracer.dir/build.make CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.provides.build
+.PHONY : CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.provides
+
+CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.provides.build: CMakeFiles/raytracer.dir/shapes/Quad.cpp.o
+
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: CMakeFiles/raytracer.dir/flags.make
 CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o: ../materials/BlinnPhong.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/build/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o"
 	/opt/rh/devtoolset-7/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o -c /afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer/materials/BlinnPhong.cpp
 
@@ -461,6 +484,7 @@ raytracer_OBJECTS = \
 "CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o" \
 "CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o" \
 "CMakeFiles/raytracer.dir/shapes/Plane.cpp.o" \
+"CMakeFiles/raytracer.dir/shapes/Quad.cpp.o" \
 "CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o"
 
 # External object files for target raytracer
@@ -482,6 +506,7 @@ raytracer: CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o
 raytracer: CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o
 raytracer: CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o
 raytracer: CMakeFiles/raytracer.dir/shapes/Plane.cpp.o
+raytracer: CMakeFiles/raytracer.dir/shapes/Quad.cpp.o
 raytracer: CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o
 raytracer: CMakeFiles/raytracer.dir/build.make
 raytracer: CMakeFiles/raytracer.dir/link.txt
@@ -508,6 +533,7 @@ CMakeFiles/raytracer.dir/requires: CMakeFiles/raytracer.dir/shapes/Sphere.cpp.o.
 CMakeFiles/raytracer.dir/requires: CMakeFiles/raytracer.dir/shapes/TriMesh.cpp.o.requires
 CMakeFiles/raytracer.dir/requires: CMakeFiles/raytracer.dir/shapes/Triangle.cpp.o.requires
 CMakeFiles/raytracer.dir/requires: CMakeFiles/raytracer.dir/shapes/Plane.cpp.o.requires
+CMakeFiles/raytracer.dir/requires: CMakeFiles/raytracer.dir/shapes/Quad.cpp.o.requires
 CMakeFiles/raytracer.dir/requires: CMakeFiles/raytracer.dir/materials/BlinnPhong.cpp.o.requires
 .PHONY : CMakeFiles/raytracer.dir/requires
 
