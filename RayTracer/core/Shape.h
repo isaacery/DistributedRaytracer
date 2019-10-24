@@ -7,7 +7,6 @@
 #define SHAPE_H_
 
 #include "core/Material.h"
-#include "materials/BlinnPhong.h" // TODO: fix this horrible system
 #include "core/RayHitStructs.h"
 #include "rapidjson/document.h"
 

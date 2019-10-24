@@ -1,0 +1,56 @@
+{   "nbounces":3,
+
+    "camera":{
+        "type":"pinhole",
+    	"width":1000,
+    	"height":1000,
+    	"fov":90
+    },
+
+    "scene":{
+    	"backgroundcolor":[0.0, 0.00, 0.00],
+    "materials":[
+        {
+        "name": "mat1",
+        "type": "blinnphong",
+        "ka": 0,
+        "ks": 0.5,
+        "kd": 0.5,
+        "alpha": 10,
+        "reflectance": 0.5,
+        "colour": [1.0, 0.0, 0.0]
+        },
+        {
+        "name": "mat2",
+        "type": "blinnphong",
+        "ka": 0,
+        "ks": 0.5,
+        "kd": 0.5,
+        "alpha": 10,
+        "reflectance": 0,
+        "colour": [1.0, 1.0, 1.0]
+        }
+    ],
+    	"lightsources":[
+    		{
+    		"type":"pointlight",
+    		"position": [0.0, 0.0, 0.0],
+    		"intensity":[1.0, 1.0, 1.0]
+    		}
+    	],
+    	"shapes":[
+    		{
+    		"type":"sphere",
+    		"center": [-2, 1, 1.5],
+    		"radius":1.5,
+    		"material": "mat1"
+    		},
+    		{
+    		"type":"sphere",
+    		"center": [2, 0, -5],
+    		"radius":2,
+    		"material": "mat2"
+    		}
+    	]
+    }
+}

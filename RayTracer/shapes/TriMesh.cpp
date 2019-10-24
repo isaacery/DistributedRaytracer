@@ -7,19 +7,6 @@
 
 namespace rt{
 
-<<<<<<< HEAD
-    void TriMesh::createTriMesh(Value& shapeSpecs) {
-    BlinnPhong mat = new BlinnPhong();
-    mat->createBlinnPhong(shapeSpecs["material"]); // parse material
-    material = mat;
-    Value& triangles = shapeSpecs["triangles"];
-    if triangles.IsArray() {
-        Triangle* triangle;
-        for (SizeType i = 0; i < triangles.Size(); i++) {
-            triangle = new Triangle();
-            triangle.createShape(triangles[i].GetObject());
-            triangle.setMaterial(material);
-=======
 void TriMesh::createTriMesh(Value& shapeSpecs) {
     Value trianglesSpecs = shapeSpecs["triangles"].GetObject();
     if (trianglesSpecs.IsArray()) {
@@ -29,7 +16,6 @@ void TriMesh::createTriMesh(Value& shapeSpecs) {
             Value triangleSpecs = trianglesSpecs[i].GetObject();
             triangle->createTriangle(triangleSpecs);
             triangles.push_back(triangle);
->>>>>>> tmp
         }
     }
 }

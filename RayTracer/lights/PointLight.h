@@ -17,11 +17,7 @@ class PointLight: public LightSource{
 
 public:
     // constructor
-<<<<<<< HEAD
-    PointLight();
-=======
     PointLight():LightSource(){};
->>>>>>> tmp
 
     PointLight(Vec3f position, float intensity):
         LightSource(intensity) {

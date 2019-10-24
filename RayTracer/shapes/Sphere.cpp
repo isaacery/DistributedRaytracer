@@ -5,6 +5,7 @@
  */
 #include "Sphere.h"
 
+
 namespace rt{
 
 void Sphere::createSphere(Value& shapeSpecs) {
@@ -14,12 +15,6 @@ void Sphere::createSphere(Value& shapeSpecs) {
 	float z = c[2].GetFloat();
 	this->center = Vec3f(x,y,z);
 	radius = shapeSpecs["radius"].GetFloat(); // parse radius
-<<<<<<< HEAD
-	BlinnPhong mat = new BlinnPhong();
-	mat->createBlinnPhong(shapeSpecs["material"]); // parse material
-	material = mat;
-=======
->>>>>>> tmp
 }
 
 

@@ -10,26 +10,6 @@
 namespace rt{
 
 void Triangle::createTriangle(Value& shapeSpecs) {
-<<<<<<< HEAD
-	Value& v0 = shapeSpecs["v0"]; // parse v0
-	float x = v0[0].GetFloat();
-	float y = v0[1].GetFloat();
-	float z = v0[2].GetFloat();
-	this->v0 = Vec3f(x,y,z);
-    Value& v0 = shapeSpecs["v1"]; // parse v0
-    float x = v1[0].GetFloat();
-    float y = v1[1].GetFloat();
-    float z = v1[2].GetFloat();
-    this->v1 = Vec3f(x,y,z);
-    Value& v2 = shapeSpecs["v2"]; // parse v2
-    float x = v2[0].GetFloat();
-    float y = v2[1].GetFloat();
-    float z = v2[2].GetFloat();
-    this->v2 = Vec3f(x,y,z);
-	BlinnPhong mat = new BlinnPhong();
-    mat->createBlinnPhong(shapeSpecs["material"]); // parse material
-	material = mat;
-=======
 	Value& vert0 = shapeSpecs["vert0"]; // parse v0
 	float x = vert0[0].GetFloat();
 	float y = vert0[1].GetFloat();
@@ -45,7 +25,6 @@ void Triangle::createTriangle(Value& shapeSpecs) {
     y = vert2[1].GetFloat();
     z = vert2[2].GetFloat();
     this->v2 = Vec3f(x,y,z);
->>>>>>> tmp
 }
 
 Hit Triangle::intersect(Ray ray) {

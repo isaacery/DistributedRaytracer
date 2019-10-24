@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "includePath": [
+                "/afs/inf.ed.ac.uk/user/s16/s1629458/Documents/Year3/ComputerGraphics/cg2/RayTracer",
+                "${workspaceFolder}/parsers"
+            ]
+        }
+    ],
+    "version": 4
+}

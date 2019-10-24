@@ -17,11 +17,7 @@ class Triangle: public Shape{
 
 public:
     // Constructors
-<<<<<<< HEAD
-    Triangle();
-=======
     Triangle():Shape(){};
->>>>>>> tmp
 
     Triangle(Vec3f v0, Vec3f v1, Vec3f v2, Material* material):
         Shape(material) {
