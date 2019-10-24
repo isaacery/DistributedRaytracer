@@ -25,7 +25,7 @@ public:
 	//
 	// Constructors
 	//
-	Shape();
+	Shape(){};
 
 	Shape(Material* material): material(material){};
 

@@ -1,1 +1,0 @@
-/opt/rh/devtoolset-7/root/usr/bin/c++   -g    CMakeFiles/vectorexample.dir/examples/vecMatrixExample.cpp.o  -o vectorexample -rdynamic 

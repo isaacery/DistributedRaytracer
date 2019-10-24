@@ -10,10 +10,6 @@
 
 
 namespace rt{
-
-	int width;
-	int height;
-	int fov;
 	
 	/**
 	 * Prints camera data

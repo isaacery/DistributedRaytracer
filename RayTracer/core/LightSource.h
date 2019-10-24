@@ -13,7 +13,9 @@ namespace rt{
 
 class LightSource{
 public:
-    // constructor
+    // constructors
+    LightSource(){};
+
     LightSource(float intensity): intensity(intensity){};
 
     float getIntersity() const {

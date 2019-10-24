@@ -21,10 +21,19 @@ class Material;
 struct Hit;
 struct Ray;
 
+<<<<<<< HEAD
 class TriMesh:public Shape{
 public:
     // constructors
     TriMesh();
+=======
+using namespace rapidjson;
+
+class TriMesh:public Shape{
+public:
+    // constructors
+    TriMesh():Shape(){};
+>>>>>>> tmp
     TriMesh(std::vector<Triangle*> triangles, Material* material):
         Shape(material) {
             // update material of every triangle to material of mesh
@@ -34,6 +43,16 @@ public:
             this->triangles = triangles;
         }
 
+<<<<<<< HEAD
+=======
+    void setMaterial(Material* mat) {
+        material = mat;
+        for (Triangle* tri : triangles) {
+            tri->setMaterial(material);
+        }
+    }
+
+>>>>>>> tmp
     void createTriMesh(Value& shapeSpecs);
 
     Hit intersect(Ray ray);

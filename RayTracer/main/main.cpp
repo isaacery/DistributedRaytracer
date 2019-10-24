@@ -16,6 +16,8 @@
 #include "core/Camera.h"
 #include "core/Scene.h"
 
+#include "core/Parser.h"
+
 #include "lights/PointLight.h"
 #include "cameras/Pinhole.h"
 #include "shapes/Sphere.h"
@@ -29,6 +31,7 @@ using namespace rt;
 using namespace rapidjson;
 
 int main(int argc, char* argv[]){
+	/*
 	printf("main started\n");
 	// camera
 	printf("camera started\n");
@@ -67,8 +70,8 @@ int main(int argc, char* argv[]){
 	char* out = "out.ppm";
 	PPMWriter::PPMWriter(camera->getWidth(), camera->getHeight(), pixelbuffer, out);
 	printf("Rendering completed\n");
-	return 0;
-	/*
+	return 0; */
+
 	// parse commandline arguments
 	char* inputFile=argv[1];  // first command line argument holds the path to the json input file
 	char* outputFile=argv[2]; // second command line argument holds the path to the output image file
@@ -82,14 +85,14 @@ int main(int argc, char* argv[]){
 	d.ParseStream(is);
 
 	// generate a camera according to the input file
-	Camera* camera=Camera::createCamera(d["camera"]);
+	Camera* camera = Camera::createCamera(d["camera"]);
 
 	// print camera data (based on the input file provided)
 	camera->printCamera();
 
 	// generate the scene according to the input file
-	Scene* scene=new Scene();
-	scene->createScene(d["scene"]);
+	Scene* scene = new Scene();
+	Parser::parseScene(d["scene"], scene);
 
 	// Main function, render scene
 	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt());
@@ -109,5 +112,4 @@ int main(int argc, char* argv[]){
 	PPMWriter::PPMWriter(camera->getWidth(), camera->getHeight(), pixelbuffer, outputFile);
 
 	delete pixelbuffer;
-	*/
 }
