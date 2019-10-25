@@ -10,12 +10,15 @@
 #include <random>
 #include "core/LightSource.h"
 
+using namespace rapidjson;
+
 namespace rt{
 
-class AreaLight:public LightSource{
+class AreaLight:public LightSource { // Light in the shape of a quad
 
 public:
-    // Light in the shape of a quad
+    // constructors
+    AreaLight():LightSource(){};
     AreaLight(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3, float intensity):
         LightSource(intensity) {
             this->v0 = v0;
@@ -23,6 +26,8 @@ public:
             this->v2 = v2;
             this->v3 = v3;
         }
+
+    void createAreaLight(Value& lightSpecs);
 
     Vec3f vFrom(Vec3f point) {
         // generate ratio values
@@ -38,10 +43,10 @@ public:
     }
 
 private:
-    /* p0 ------ p1
+    /* v0 ------ v1
        |         |
        |		 |
-       p3 ------ p2 */
+       v3 ------ v2 */
     Vec3f v0;
     Vec3f v1;
     Vec3f v2;

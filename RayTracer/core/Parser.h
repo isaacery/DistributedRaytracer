@@ -10,6 +10,7 @@
 #include "cameras/Pinhole.h"
 
 #include "lights/PointLight.h"
+#include "lights/AreaLight.h"
 
 // #include "core/Shape.h"
 #include "shapes/Plane.h"
@@ -89,11 +90,11 @@ public:
                     PointLight* o = new PointLight();
                     o->createPointLight(lightSpecs);
                     l = o;
-                } /*else if (lightType.compare("arealight") == 0) {
+                } else if (lightType.compare("arealight") == 0) {
                     AreaLight* o = new AreaLight();
-                    o->createPlane(lightSpecs);
+                    o->createAreaLight(lightSpecs);
                     l = o;
-                } */
+                }
                 lights.push_back(l);
             }
         }
