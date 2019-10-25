@@ -35,11 +35,15 @@ public:
 	//
 	// print function (to be implemented by the subclasses )
 	//
-	virtual void printCamera()=0;
+	virtual void printCamera() = 0;
 
 	//
 	// other camera functions (to complete)
 	//
+
+	virtual float getFocus() = 0;
+
+	virtual Vec3f getPosition() = 0;
 
 	//
 	// Getters and Setters

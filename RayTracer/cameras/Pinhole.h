@@ -29,6 +29,14 @@ public:
 	// print function (implementing abstract function of base class)
 	//
 	void printCamera();
+
+	float getFocus() {
+		return -1;
+	}
+
+	Vec3f getPosition() { // return position of camera in camera space 
+		return Vec3f(0);
+	}
 };
 
 

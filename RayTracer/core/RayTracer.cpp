@@ -47,8 +47,6 @@ Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples) {
 Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsamples){
 	int x_r, y_r;
 	float x_ndc, y_ndc, x_w, y_w, t_fov;
-	Vec3f origin, direction;
-	Ray ray;
 
 	int width = camera->getWidth();
 	int height = camera->getHeight();
@@ -79,14 +77,22 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 			/* Camera position and pixel position in camera space, assuming
 			camera is located at origin and facing along negative z axis */
 			Matrix44f cameraToWorld = camera->getCameraToWorld();
-			cameraToWorld.multVecMatrix(Vec3f(0),origin); // transform origin
-			cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
-			direction = direction.normalize();
 
-			//direction = (pixel_world - origin_world).normalize(); // ray direction
+			// randomly sample lens uniformly TODO: perform once for pinhole
+			Vec3f total_light = Vec3f(0);
+			for (int i = 0; i < nsamples; i++) {
+				Vec3f origin, direction;
 
-			Ray ray = {PRIMARY,origin,direction};
-			*(pixelbuffer++) = rayTrace(scene, ray, nbounces, nsamples); // trace ray and save result to pixel
+				cameraToWorld.multVecMatrix(camera->getPosition(),origin); // transform origin
+				cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,camera->getFocus()),direction); // transform ray through pixel
+				direction = direction.normalize();
+
+				Ray ray = {PRIMARY,origin,direction};
+				Vec3f light = rayTrace(scene, ray, nbounces, nsamples); // trace ray and save result to pixel
+				total_light = light + total_light;
+			}
+			float d = 1/(float)nsamples;
+			*(pixelbuffer++) = d * total_light; // trace ray and save result to pixel
 		}
 	}
 	printf("\n");

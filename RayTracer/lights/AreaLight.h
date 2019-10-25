@@ -39,10 +39,6 @@ public:
 
         // generate random point on light
         Vec3f position = u * e0 + v * e1;
-        assert(position.x < 0.11);
-        assert(position.x > -1.11);
-        assert(position.y > 2.89);
-        assert(position.y < 4.11);
         return (position - point);
     }
 

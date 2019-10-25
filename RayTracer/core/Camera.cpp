@@ -46,7 +46,12 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 				m);
 
 	}else if (cameraType.compare("thinlens")==0){
-		return new ThinLens();
+		return new ThinLens(cameraSpecs["width"].GetInt(),
+				cameraSpecs["height"].GetInt(),
+				cameraSpecs["fov"].GetInt(),
+				m,
+				cameraSpecs["focus"].GetFloat(),
+				cameraSpecs["radius"].GetFloat());
 	}
 
 	return 0;
