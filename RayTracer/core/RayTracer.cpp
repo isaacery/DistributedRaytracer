@@ -60,6 +60,9 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 
 	for (int y_r = 0; y_r < height; y_r++) { // loop through pixels in buffer
 		for (int x_r = 0; x_r < width; x_r++) {
+			if (x_r % 10 == 0) {
+				printf("\r%.0f%% completed", (float)((y_r*width + x_r)*100)/(width*height));
+			}
 			//std::printf("%u %u \n", y_r, x_r );
 
 			// // get normalized device coordinates for pixel
@@ -86,6 +89,7 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 			*(pixelbuffer++) = rayTrace(scene, ray, nbounces, nsamples); // trace ray and save result to pixel
 		}
 	}
+	printf("\n");
 	return start;
 }
 

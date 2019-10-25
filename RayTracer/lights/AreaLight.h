@@ -36,8 +36,13 @@ public:
         // calculate edge vectors
         Vec3f e0 = v1 - v0;
         Vec3f e1 = v3 - v0;
+
         // generate random point on light
         Vec3f position = u * e0 + v * e1;
+        assert(position.x < 0.11);
+        assert(position.x > -1.11);
+        assert(position.y > 2.89);
+        assert(position.y < 4.11);
         return (position - point);
     }
 

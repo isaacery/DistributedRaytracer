@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
@@ -29,6 +30,7 @@
 using std::string;
 using namespace rt;
 using namespace rapidjson;
+using namespace std::chrono;
 
 int main(int argc, char* argv[]){
 
@@ -58,9 +60,12 @@ int main(int argc, char* argv[]){
 		nsamples = d["nsamples"].GetInt();
 	}
 
+	auto start = high_resolution_clock::now(); // measure start time of render
 	// Main function, render scene
 	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt(), nsamples);
-
+	auto stop = high_resolution_clock::now(); // measure stop time of render
+	float duration = duration_cast<milliseconds>(stop - start).count()/(float)1000;
+	printf("Rendering completed in %0.2f seconds\n", duration);
 	// free resources when rendering is finished
 	delete camera;
 	delete scene;
