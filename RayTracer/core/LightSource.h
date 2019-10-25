@@ -29,6 +29,8 @@ public:
     /* returns direction from point to light */
     virtual Vec3f vFrom(Vec3f point) = 0;
 
+    virtual void print() = 0;
+
 protected:
     float intensity;
 };

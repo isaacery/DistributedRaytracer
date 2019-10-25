@@ -30,6 +30,11 @@ public:
         return (position - point); //TODO: normalize?
     }
 
+    void print() {
+        printf("I'm a point light!\n");
+        printf("My position is: [%f, %f, %f]", position.x, position.y, position.z);
+    }
+
 private:
     Vec3f position;
 
