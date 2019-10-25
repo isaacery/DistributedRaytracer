@@ -100,9 +100,9 @@ Vec3f* RayTracer::tonemap(Vec3f* pixelbuffer, int len){
 	for (int i = 0; i < len; i++) {
 		Vec3f p = pixelbuffer[i];
 		p *= 255;
-		p.x = std::min((float)(int)p.x, 1.0f);
-		p.y = std::min((float)(int)p.y, 1.0f);
-		p.z = std::min((float)(int)p.z, 1.0f);
+		p.x = (float)std::min((int)p.x, 255);
+		p.y = (float)std::min((int)p.y, 255);
+		p.z = (float)std::min((int)p.z, 255);
 		pixelbuffer[i] = p;
 	}
 	return pixelbuffer;
