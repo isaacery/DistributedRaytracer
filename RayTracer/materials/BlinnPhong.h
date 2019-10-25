@@ -61,7 +61,7 @@ public:
         this->reflectance = reflectance;
     }
 
-    Vec3f shade(Scene* scene, Hit h, int nbounces);
+    Vec3f shade(Scene* scene, Hit h, int nbounces, int nsamples);
 
     void print();
 

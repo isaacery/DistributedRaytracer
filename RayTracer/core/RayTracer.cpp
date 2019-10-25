@@ -23,11 +23,11 @@ Hit RayTracer::getIntersection(Scene* scene, Ray ray) {
 }
 
 /* Returns the resulting r,g,b value from recursively tracing ray */
-Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces) {
+Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples) {
 	Hit h = getIntersection(scene, ray);
 	if (h.itsct) {
 		Material* m = h.mat;
-		return m->shade(scene, h, nbounces);
+		return m->shade(scene, h, nbounces, nsamples);
 	} else {
 		return Vec3f(0,0,0);
 	}
@@ -40,10 +40,11 @@ Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces) {
  * @param camera the camera viewing the scene
  * @param scene the scene to render, including objects and lightsources
  * @param nbounces the number of bounces to consider for raytracing
+ * @param nsamples the number of samples to consider for distributed raytracing
  *
  * @return a pixel buffer containing pixel values in linear RGB format
  */
-Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
+Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsamples){
 	int x_r, y_r;
 	float x_ndc, y_ndc, x_w, y_w, t_fov;
 	Vec3f origin, direction;
@@ -82,7 +83,7 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces){
 			//direction = (pixel_world - origin_world).normalize(); // ray direction
 
 			Ray ray = {PRIMARY,origin,direction};
-			*(pixelbuffer++) = rayTrace(scene, ray, nbounces); // trace ray and save result to pixel
+			*(pixelbuffer++) = rayTrace(scene, ray, nbounces, nsamples); // trace ray and save result to pixel
 		}
 	}
 	return start;

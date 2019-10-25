@@ -24,7 +24,7 @@ void BlinnPhong::createBlinnPhong(Value& materialSpecs) {
     colour = Vec3f(r,g,b);
 }
 
-Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
+Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
     float k_a = ambient;
     float k_d = diffuse;
     float k_s = specular;
@@ -37,23 +37,25 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
 
     /* shade using phong shading */
     for (LightSource* l : scene->getLightSources()) {
-        Vec3f light_v = l->vFrom(h.point);
-        Vec3f light_dir = light_v.normalize(); // get direction from intersection point to light
-        float light_dist = light_v.length();
-        float d_m = 1/(light_dist * light_dist); // inverse distance squared
-        // reflect light_dir about normal
-        Vec3f light_reflection_dir = (-light_dir) - 2 * n * (-light_dir).dotProduct(n);
+        float i_p_sum = 0; // total contribution of light l over nsamples samples
+        for (int i = 0; i < nsamples; i++) { // sample lightsource nsamples times TODO: break after 1 if point light
+            Vec3f light_v = l->vFrom(h.point);
+            Vec3f light_dir = light_v.normalize(); // get direction from intersection point to light
+            float light_dist = light_v.length();
+            float d_m = 1/(light_dist * light_dist); // inverse distance squared
+            Vec3f light_reflection_dir = (-light_dir) - 2 * n * (-light_dir).dotProduct(n); // reflect light_dir about normal
 
-        /* check for shadow */
-        Ray shadow_ray = {SHADOW,h.point+(EPSILON*light_dir),light_dir}; // ray to cast toward light
-        Hit s = RayTracer::getIntersection(scene, shadow_ray);
-        // if there's a shape between point and light, skip to next light
-        if (s.itsct && s.t < light_dist) continue; // TODO: need to avoid the case where shapes are behind lights
+            /* check for shadow */
+            Ray shadow_ray = {SHADOW,h.point+(EPSILON*light_dir),light_dir}; // ray to cast toward light
+            Hit s = RayTracer::getIntersection(scene, shadow_ray);
+            if (s.itsct && s.t < light_dist) continue; // if there's a shape between point and light, skip to next light
 
-        /* calculate diffuse and specular shading */
-        i_p += (l->getIntersity() * k_d * std::max(0.f,(light_dir).dotProduct(n))) * d_m; // diffuse
-        i_p += l->getIntersity() * k_s * std::pow(std::max(0.f,
-                light_reflection_dir.dotProduct(-dir)), alpha) * d_m; // specular
+            /* calculate diffuse and specular shading */
+            i_p_sum += (l->getIntersity() * k_d * std::max(0.f,(light_dir).dotProduct(n))) * d_m; // diffuse
+            i_p_sum += l->getIntersity() * k_s * std::pow(std::max(0.f,
+                    light_reflection_dir.dotProduct(-dir)), alpha) * d_m; // specular
+        }
+        i_p += i_p_sum / nsamples;
     }
 
     Vec3f out = i_p * colour;
@@ -63,7 +65,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces) {
         Vec3f reflect_dir = (dir - 2 * dir.dotProduct(n) * n).normalize();
         Ray ray_out = {SECONDARY,h.point+EPSILON*reflect_dir,reflect_dir}; // cast reflection ray
         // interpolate between phong shaded intensity and reflection
-        out = (1-r) * out  + r * RayTracer::rayTrace(scene,ray_out,nbounces-1);
+        out = (1-r) * out  + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples);
     }
 
     return out;

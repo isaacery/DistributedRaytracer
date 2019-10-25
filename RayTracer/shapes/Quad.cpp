@@ -10,7 +10,7 @@ namespace rt{
 
 
 /**
- * Computes whether a ray hit the specific instance of a plane shape and returns the hit data
+ * Computes whether a ray hit the specific instance of a quad shape and returns the hit data
  *
  * @param ray cast ray to check for intersection with shape
  *

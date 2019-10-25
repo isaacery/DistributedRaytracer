@@ -19,7 +19,7 @@ public:
 	// Constructors
 	Quad():Shape(){};
     // n is normal vector of plane, d distance from plane to origin
-	Quad(Vec3f p0, Vec3f p1, Vec3f p2, Vec3f p3);
+	Quad(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3);
 	/*
 		Shape(material) {
             this->n = n.normalize();
@@ -33,11 +33,11 @@ private:
 	/* p0 ------ p1
 	   |         |
 	   |		 |
-	   p2 ------ p3 */
-	Vec3f p0;
-	Vec3f p1;
-	Vec3f p2;
-	Vec3f p3;
+	   p3 ------ p2 */
+	Vec3f v0;
+	Vec3f v1;
+	Vec3f v2;
+	Vec3f v3;
     Vec3f n; // normal of quad
 };
 
