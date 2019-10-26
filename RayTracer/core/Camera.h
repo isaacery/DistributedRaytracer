@@ -45,6 +45,9 @@ public:
 
 	virtual Vec3f getPosition() = 0;
 
+    /* true if Camera uses sampling */
+	virtual bool distributed() = 0;
+
 	//
 	// Getters and Setters
 	//

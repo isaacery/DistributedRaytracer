@@ -51,6 +51,10 @@ public:
         printf("v3: [%f, %f, %f]\n", v3.x, v3.y, v3.z);
     }
 
+    bool distributed() {
+        return true;
+    }
+
 private:
     /* v0 ------ v1
        |         |

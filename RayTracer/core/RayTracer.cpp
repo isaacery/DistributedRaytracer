@@ -52,6 +52,8 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 	int height = camera->getHeight();
 	float aspect = (float)width / height;
 
+	int camerasamples = camera->distributed() ? nsamples : 1;
+
 	Vec3f* pixelbuffer = new Vec3f[width*height];
 
 	Vec3f* start = pixelbuffer;
@@ -80,11 +82,16 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 
 			// randomly sample lens uniformly TODO: perform once for pinhole
 			Vec3f total_light = Vec3f(0);
-			for (int i = 0; i < nsamples; i++) {
-				Vec3f origin, direction;
+			float focalDepth = camera->getFocus();
+			for (int i = 0; i < camerasamples; i++) {
+				Vec3f direction;
+				Vec3f origin = Vec3f(0);
+				Vec3f offset = camera->getPosition(); // offset from origin in camera space
+				cameraToWorld.multVecMatrix(origin+offset,origin); // transform origin
+				cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
 
-				cameraToWorld.multVecMatrix(camera->getPosition(),origin); // transform origin
-				cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,camera->getFocus()),direction); // transform ray through pixel
+				direction *= focalDepth;
+				direction = direction - offset;
 				direction = direction.normalize();
 
 				Ray ray = {PRIMARY,origin,direction};

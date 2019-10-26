@@ -38,7 +38,8 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
     /* shade using phong shading */
     for (LightSource* l : scene->getLightSources()) {
         float i_p_sum = 0; // total contribution of light l over nsamples samples
-        for (int i = 0; i < nsamples; i++) { // sample lightsource nsamples times TODO: break after 1 if point light
+        int lightsamples = l->distributed() ? nsamples : 1;
+        for (int i = 0; i < lightsamples; i++) { // sample lightsource nsamples times TODO: break after 1 if point light
             Vec3f light_v = l->vFrom(h.point);
             Vec3f light_dir = light_v.normalize(); // get direction from intersection point to light
             float light_dist = light_v.length();

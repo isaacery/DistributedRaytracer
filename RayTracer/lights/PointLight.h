@@ -35,6 +35,11 @@ public:
         printf("My position is: [%f, %f, %f]", position.x, position.y, position.z);
     }
 
+    bool distributed() {
+        return false;
+    }
+
+
 private:
     Vec3f position;
 

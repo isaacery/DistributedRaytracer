@@ -41,17 +41,19 @@ public:
 		return focus;
 	}
 
-	Vec3f getPosition() { // return sample of position of camera in camera space
-		// randomly generate radius
-		float r = ((float) rand() / (RAND_MAX));
-		// randomly generate theta
-		float theta = ((float) rand() / (RAND_MAX)) * 2 * M_PI;
-		return Vec3f(r*cos(theta),r*sin(theta),0);
+	Vec3f getPosition() { // return sample of position of lens in camera space
+		float r = ((float) rand() / (RAND_MAX)) * radius; // randomly generate r in [0,radius]
+		float theta = ((float) rand() / (RAND_MAX)) * 2 * M_PI; // randomly generate theta in [0, 2pi]
+		return Vec3f(r*cos(theta),r*sin(theta),0); // return random point on lens
+	}
+
+	bool distributed() {
+		return true;
 	}
 
 private:
-	float focus; // focal distance
-	float radius; // radius of lens TODO: how do I use this?
+	float focus; // focal depth
+	float radius; // radius of lens
 
 };
 

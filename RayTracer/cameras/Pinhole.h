@@ -31,11 +31,15 @@ public:
 	void printCamera();
 
 	float getFocus() {
-		return -1;
+		return 1;
 	}
 
-	Vec3f getPosition() { // return position of camera in camera space 
+	Vec3f getPosition() { // return position of camera in camera space
 		return Vec3f(0);
+	}
+
+	bool distributed() {
+		return false;
 	}
 };
 

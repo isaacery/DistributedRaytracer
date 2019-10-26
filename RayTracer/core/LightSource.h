@@ -31,6 +31,9 @@ public:
 
     virtual void print() = 0;
 
+    /* true if LightSource uses sampling */
+    virtual bool distributed() = 0;
+
 protected:
     float intensity;
 };
