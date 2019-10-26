@@ -27,7 +27,7 @@ cameras/*.cpp
 lights/*.cpp
 shapes/*.cpp
 materials/*.cpp
-core/Parser.h
+textures/*.cpp
 )
 
 
