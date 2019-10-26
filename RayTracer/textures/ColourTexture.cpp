@@ -9,10 +9,8 @@ void ColourTexture::createColourTexture(Value& textureSpecs) {
     colour = Vec3f(r,g,b);
 }
 
-Vec3f value(float u, float v, Vec3f point) {
+Vec3f ColourTexture::value(float u, float v, Vec3f point) {
     return colour;
 }
 
 } // namespace rt
-
-#endif /* TEXTURE_H_ */
