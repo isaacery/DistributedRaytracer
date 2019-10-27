@@ -5,6 +5,7 @@
  */
 #include "Sphere.h"
 
+#include <math.h>
 
 namespace rt{
 
@@ -14,6 +15,14 @@ void Sphere::createSphere(Value& shapeSpecs) {
 	float z = shapeSpecs["center"][2].GetFloat();
 	this->center = Vec3f(x,y,z);
 	radius = shapeSpecs["radius"].GetFloat(); // parse radius
+}
+
+/* update uv coordinates at point of intersection p on sphere */
+void Sphere::getUV(Vec3f p, float& u, float& v) {
+	float theta1 = atan2(p.z, p.x);
+	float theta2 = asin(p.y);
+	u = 0.5 + (theta1 + M_PI) / (2 * M_PI);
+	v = 0.5 - (theta2 + M_PI / 2) / M_PI;
 }
 
 

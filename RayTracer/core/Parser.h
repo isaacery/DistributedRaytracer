@@ -5,6 +5,7 @@
 #include "core/Scene.h"
 
 #include "textures/ConstantTexture.h"
+#include "textures/CheckerTexture.h"
 
 #include "cameras/Pinhole.h"
 
@@ -42,7 +43,11 @@ public:
     				ConstantTexture* o = new ConstantTexture();
     				o->createConstantTexture(textureSpecs);
     				t = o;
-    			}
+    			} else if (textureType.compare("checker") == 0) {
+                    CheckerTexture* o = new CheckerTexture();
+                    o->createCheckerTexture(textureSpecs, textures);
+                    t = o;
+                }
     			textures.insert(std::pair<string,Texture*>(textureSpecs["name"].GetString(),t));
     		}
     	}
