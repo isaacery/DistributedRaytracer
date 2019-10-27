@@ -23,7 +23,7 @@ public:
 
     Material(Texture* texture): texture(texture){};
     // shade material based on scene and intersection h
-    virtual Vec3f shade(Scene* scene, Hit h, int nbounces, int nsamples) = 0;
+    virtual Vec3f shade(Scene* scene, Hit h, int nbounces, int nsamples, bool random) = 0;
 
     virtual void print() = 0; // output information about material
 protected:

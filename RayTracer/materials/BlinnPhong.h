@@ -32,7 +32,7 @@ public:
 
     void createBlinnPhong(Value& materialSpecs, std::map<string,Texture*>& textures);
 
-    Vec3f shade(Scene* scene, Hit h, int nbounces, int nsamples);
+    Vec3f shade(Scene* scene, Hit h, int nbounces, int nsamples, bool random);
 
     void print();
 

@@ -38,6 +38,10 @@ public:
 		return Vec3f(0);
 	}
 
+	Vec3f getPosition(float g_min, float g_max) {
+		return Vec3f(0);
+	}
+
 	bool distributed() {
 		return false;
 	}

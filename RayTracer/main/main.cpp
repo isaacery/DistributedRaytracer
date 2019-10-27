@@ -27,6 +27,8 @@
 #include "shapes/TriMesh.h"
 #include "materials/BlinnPhong.h"
 
+#include <cmath>
+
 using std::string;
 using namespace rt;
 using namespace rapidjson;
@@ -56,13 +58,22 @@ int main(int argc, char* argv[]){
 	Scene* scene = Parser::parseScene(d["scene"]);
 
 	int nsamples = 1;
+	bool random = true;
 	if (d.HasMember("nsamples")){
 		nsamples = d["nsamples"].GetInt();
+		if (d.HasMember("sampling")) {
+			string sampleType = d["sampling"].GetString();
+			if (sampleType.compare("grid") == 0) { // use grid sampling
+				 // convert nsamples to closest perfect square
+				random = false;
+				nsamples = (int)std::pow(std::ceil(std::sqrt((float)nsamples)),2);
+			}
+		}
 	}
 
 	auto start = high_resolution_clock::now(); // measure start time of render
 	// Main function, render scene
-	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt(), nsamples);
+	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt(), nsamples, random);
 	auto stop = high_resolution_clock::now(); // measure stop time of render
 	float duration = duration_cast<milliseconds>(stop - start).count()/(float)1000;
 	printf("Rendering completed in %0.2f seconds\n", duration);

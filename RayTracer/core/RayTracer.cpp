@@ -23,11 +23,11 @@ Hit RayTracer::getIntersection(Scene* scene, Ray ray) {
 }
 
 /* Returns the resulting r,g,b value from recursively tracing ray */
-Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples) {
+Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples, bool random) {
 	Hit h = getIntersection(scene, ray);
 	if (h.itsct) {
 		Material* m = h.mat;
-		return m->shade(scene, h, nbounces, nsamples);
+		return m->shade(scene, h, nbounces, nsamples, random);
 	} else {
 		return Vec3f(0,0,0);
 	}
@@ -44,7 +44,7 @@ Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples) {
  *
  * @return a pixel buffer containing pixel values in linear RGB format
  */
-Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsamples){
+Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsamples, bool random){
 	int x_r, y_r;
 	float x_ndc, y_ndc, x_w, y_w, t_fov;
 
@@ -52,7 +52,7 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 	int height = camera->getHeight();
 	float aspect = (float)width / height;
 
-	int camerasamples = camera->distributed() ? nsamples : 1;
+	int camerasamples = camera->distributed() ? nsamples : 1; // sample only once if camera is pinhole
 
 	Vec3f* pixelbuffer = new Vec3f[width*height];
 
@@ -80,13 +80,19 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 			camera is located at origin and facing along negative z axis */
 			Matrix44f cameraToWorld = camera->getCameraToWorld();
 
-			// randomly sample lens uniformly TODO: perform once for pinhole
+        	float grid_step = 1 / (float)camerasamples; // initialize step distance for grid
+			// randomly sample lens uniformly
 			Vec3f total_light = Vec3f(0);
 			float focalDepth = camera->getFocus();
 			for (int i = 0; i < camerasamples; i++) {
 				Vec3f direction;
 				Vec3f origin = Vec3f(0);
-				Vec3f offset = camera->getPosition(); // offset from origin in camera space
+				Vec3f offset;
+				if (random) {
+					offset = camera->getPosition(); // offset from origin in camera space
+				} else {
+					offset = camera->getPosition(i*grid_step,(i+1)*grid_step);
+				}
 				cameraToWorld.multVecMatrix(origin+offset,origin); // transform origin
 				cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
 
@@ -95,10 +101,10 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 				direction = direction.normalize();
 
 				Ray ray = {PRIMARY,origin,direction};
-				Vec3f light = rayTrace(scene, ray, nbounces, nsamples); // trace ray and save result to pixel
+				Vec3f light = rayTrace(scene, ray, nbounces, nsamples, random); // trace ray and save result to pixel
 				total_light = light + total_light;
 			}
-			float d = 1/(float)nsamples;
+			float d = 1/(float)camerasamples;
 			*(pixelbuffer++) = d * total_light; // trace ray and save result to pixel
 		}
 	}

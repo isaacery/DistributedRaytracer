@@ -27,18 +27,56 @@ public:
             this->v3 = v3;
         }
 
+    void updateBounds() { // update bounds for coordinates
+        float max_x = max4(v0.x,v1.x,v2.x,v3.x);
+        float max_y = max4(v0.y,v1.y,v2.y,v3.y);
+        float max_z = max4(v0.z,v1.z,v2.z,v3.z);
+        float min_x = min4(v0.x,v1.x,v2.x,v3.x);
+        float min_y = min4(v0.y,v1.y,v2.y,v3.y);
+        float min_z = min4(v0.z,v1.z,v2.z,v3.z);
+        max = Vec3f(max_x,max_y,max_z);
+        min = Vec3f(min_x,min_y,min_z);
+    }
+
+    float min4(float a, float b, float c, float d) {
+        int e = a < b ? a : b;
+        int f = c < d ? c : d;
+        return e < f ? e : f;
+    }
+
+    float max4(float a, float b, float c, float d) {
+        int e = a > b ? a : b;
+        int f = c > d ? c : d;
+        return e > f ? e : f;
+    }
+
+
     void createAreaLight(Value& lightSpecs);
 
-    Vec3f vFrom(Vec3f point) {
+    Vec3f vFrom(Vec3f point) { // random sampling
         // generate ratio values
-        float u = ((float) rand() / (RAND_MAX));
-        float v = ((float) rand() / (RAND_MAX));
-        // calculate edge vectors
-        Vec3f e0 = v1 - v0;
-        Vec3f e1 = v3 - v0;
+        float x = ((float) rand() / (RAND_MAX));
+        float y = ((float) rand() / (RAND_MAX));
+        float z = ((float) rand() / (RAND_MAX));
+        /* generate random point on light */
+        Vec3f position = Vec3f(x,y,z);
+        position = position * Vec3f(max.x-min.x,max.y-min.y,max.z-min.z);
+        position = position + min;
 
-        // generate random point on light
-        Vec3f position = u * e0 + v * e1;
+        return (position - point);
+    }
+
+    Vec3f vFrom(Vec3f point, float g_min, float g_max) { // grid sampling
+        // generate ratio values
+        float x = g_min + ((double) rand() / (RAND_MAX/(g_max-g_min)));
+        float y = g_min + ((double) rand() / (RAND_MAX/(g_max-g_min)));
+        float z = g_min + ((double) rand() / (RAND_MAX/(g_max-g_min)));
+        /* generate random point on light */
+        Vec3f position = Vec3f(x,y,z);
+        position = position * Vec3f(max.x-min.x,max.y-min.y,max.z-min.z);
+        position = position + min;
+        return (position - point);
+
         return (position - point);
     }
 
@@ -64,6 +102,8 @@ private:
     Vec3f v1;
     Vec3f v2;
     Vec3f v3;
+    Vec3f max;
+    Vec3f min;
 };
 
 

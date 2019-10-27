@@ -19,7 +19,7 @@ void BlinnPhong::createBlinnPhong(Value& materialSpecs, std::map<string,Texture*
     texture = textures[materialSpecs["texture"].GetString()];
 }
 
-Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
+Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool random) {
     float k_a = ambient;
     float k_d = diffuse;
     float k_s = specular;
@@ -33,9 +33,17 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
     /* shade using phong shading */
     for (LightSource* l : scene->getLightSources()) {
         float i_p_sum = 0; // total contribution of light l over nsamples samples
-        int lightsamples = l->distributed() ? nsamples : 1;
-        for (int i = 0; i < lightsamples; i++) { // sample lightsource nsamples times TODO: break after 1 if point light
-            Vec3f light_v = l->vFrom(h.point);
+        int lightsamples = l->distributed() ? nsamples : 1; // only sample distributed lightsources
+
+        float grid_step = 1 / (float)lightsamples; // initialize step distance for grid
+        //TODO: this grid method is wrong, but works well
+        for (int i = 0; i < lightsamples; i++) { // sample lightsource nsamples times
+            Vec3f light_v;
+            if (random) {
+                light_v = l->vFrom(h.point);
+            } else {
+                light_v = l->vFrom(h.point,i*grid_step,(i+1)*grid_step); // sample light only within grid
+            }
             Vec3f light_dir = light_v.normalize(); // get direction from intersection point to light
             float light_dist = light_v.length();
             float d_m = 1/(light_dist * light_dist); // inverse distance squared
@@ -51,7 +59,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
             i_p_sum += l->getIntersity() * k_s * std::pow(std::max(0.f,
                     light_reflection_dir.dotProduct(-dir)), alpha) * d_m; // specular
         }
-        i_p += i_p_sum / nsamples;
+        i_p += i_p_sum / lightsamples;
     }
     /* calculate texture coordinates */
     float u = 0;
@@ -68,7 +76,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
         Vec3f reflect_dir = (dir - 2 * dir.dotProduct(n) * n).normalize();
         Ray ray_out = {SECONDARY,h.point+EPSILON*reflect_dir,reflect_dir}; // cast reflection ray
         // interpolate between phong shaded intensity and reflection
-        out = (1-r) * out  + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples);
+        out = (1-r) * out  + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples,random);
     }
 
     return out;

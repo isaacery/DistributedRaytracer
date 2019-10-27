@@ -28,6 +28,7 @@ void AreaLight::createAreaLight(Value& lightSpecs) {
     z = lightSpecs["v3"][2].GetFloat();
     this->v3 = Vec3f(x,y,z);
     this->intensity = lightSpecs["intensity"].GetFloat();
+	this->updateBounds();
 }
 
 
