@@ -43,6 +43,8 @@ public:
 
     void createTriMesh(Value& shapeSpecs);
 
+    void getUV(Vec3f p, float& u, float& v) {}
+
     Hit intersect(Ray ray);
 
 private:

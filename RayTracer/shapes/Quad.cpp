@@ -28,7 +28,7 @@ Hit Quad::intersect(Ray ray){
     if (t > 0) { // intersection occurred
         // construct and return hit
         Vec3f p_hit = ray.o + t * ray.d; // point hit
-        Hit h = {true,t,ray,n,p_hit,material};
+        Hit h = {true,t,ray,n,p_hit,material,this};
         return h;
     }
     //}

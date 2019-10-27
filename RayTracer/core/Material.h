@@ -11,6 +11,7 @@
 #include "core/RayHitStructs.h"
 #include "core/RayTracer.h"
 #include "rapidjson/document.h"
+#include "core/Texture.h"
 
 namespace rt{
 
@@ -20,13 +21,13 @@ class Material{
 public:
     Material(){};
 
-    Material(Vec3f colour): colour(colour){};
+    Material(Texture* texture): texture(texture){};
     // shade material based on scene and intersection h
     virtual Vec3f shade(Scene* scene, Hit h, int nbounces, int nsamples) = 0;
 
     virtual void print() = 0; // output information about material
 protected:
-    Vec3f colour;
+    Texture* texture;
 };
 
 

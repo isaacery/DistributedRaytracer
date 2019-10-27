@@ -6,22 +6,17 @@
 
 #include "BlinnPhong.h"
 
-
-
 namespace rt{
 
 const float EPSILON = 0.001; // distance above surface from which to cast ray to avoid rounding errors
 
-void BlinnPhong::createBlinnPhong(Value& materialSpecs) {
+void BlinnPhong::createBlinnPhong(Value& materialSpecs, std::map<string,Texture*>& textures) {
     ambient = materialSpecs["ka"].GetFloat();
     specular = materialSpecs["ks"].GetFloat();
     alpha = materialSpecs["alpha"].GetFloat();
     diffuse = materialSpecs["kd"].GetFloat();
     reflectance = materialSpecs["reflectance"].GetFloat();
-    float r = materialSpecs["colour"][0].GetFloat();
-    float g = materialSpecs["colour"][1].GetFloat();
-    float b = materialSpecs["colour"][2].GetFloat();
-    colour = Vec3f(r,g,b);
+    texture = textures[materialSpecs["texture"].GetString()];
 }
 
 Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
@@ -58,6 +53,13 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples) {
         }
         i_p += i_p_sum / nsamples;
     }
+    /* calculate texture coordinates */
+    float u = 0;
+    float v = 0;
+    h.shape->getUV(h.point,u,v);
+
+    /* get colour from texture using texture coordinates */
+    Vec3f colour = texture->value(u,v,h.point);
 
     Vec3f out = i_p * colour;
 

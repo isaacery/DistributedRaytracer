@@ -29,6 +29,8 @@ public:
 
 	Hit intersect(Ray ray);
 
+	void getUV(Vec3f p, float& u, float& v) {}
+
 private:
 
 	Vec3f center;

@@ -51,7 +51,7 @@ Hit Triangle::intersect(Ray ray) {
 		if (ray.d.dotProduct(n) > 0) {
 			n = -n; // flip normal if normal faces same dir as ray
 		}
-        Hit h = {true,t,ray,n,p,material};
+        Hit h = {true,t,ray,n,p,material,this};
         return h;
     } else { // intersection is behind origin
         return none;

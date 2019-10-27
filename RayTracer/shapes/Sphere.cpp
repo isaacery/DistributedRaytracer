@@ -60,7 +60,7 @@ Hit Sphere::intersect(Ray ray){
 	// construct and return hit
 	Vec3f p = ray.o + t0 * ray.d; // point hit
 	Vec3f n = (p - center).normalize(); // normal
-	Hit h = {true,t0,ray,n,p,material};
+	Hit h = {true,t0,ray,n,p,material,this};
 	return h;
 }
 
