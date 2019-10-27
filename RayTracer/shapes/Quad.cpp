@@ -18,22 +18,33 @@ namespace rt{
  *
  */
 Hit Quad::intersect(Ray ray){
-	/*
+    /*
 	Hit none = {.itsct=false}; // default to no intersection
     float denom = n.dotProduct(ray.d);
-    //printf("%f\n", denom);
-    //if (denom < 0.00001) {
-    float t = n.dotProduct(p-ray.o) / denom;
-    //printf("%f\n", t);
-    if (t > 0) { // intersection occurred
+    float t = n.dotProduct(v0-ray.o) / denom;
+    if (t > 0) { // intersection occurred with plane
         // construct and return hit
         Vec3f p_hit = ray.o + t * ray.d; // point hit
-        Hit h = {true,t,ray,n,p_hit,material,this};
-        return h;
+        if (Quad::inBounds(p_hit)) {
+            Hit h = {true,t,ray,n,p_hit,material,this};
+            return h;
+        }
     }
-    //}
     return none;
-	*/
+    */
+    Hit none = {.itsct=false}; // default to no intersection
+    return none;
+}
+
+bool Quad::inBounds(Vec3f p) {
+    bool x = (min.x <= p.x) && (p.x <= max.x);
+    if (x) {
+        bool y = (min.y <= p.y) && (p.y <= max.y);
+        if (y) {
+            bool z = (min.z <= p.z) && (p.z <= max.z);
+            return z;
+        }
+    }
 }
 
 

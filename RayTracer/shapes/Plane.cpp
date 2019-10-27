@@ -8,9 +8,7 @@
 
 namespace rt{
 
-void Plane::getUV(Vec3f p, float& u, float& v) {
-	
-}
+void Plane::getUV(Vec3f p, float& u, float& v) {}
 
 void Plane::createPlane(Value& shapeSpecs) {
 	float x = shapeSpecs["normal"][0].GetFloat();
