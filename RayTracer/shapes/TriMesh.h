@@ -21,6 +21,7 @@ class Material;
 struct Hit;
 struct Ray;
 
+using std::string;
 using namespace rapidjson;
 
 class TriMesh:public Shape{

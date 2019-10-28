@@ -30,7 +30,7 @@ public:
         return (position - point);
     }
 
-    Vec3f vFrom(Vec3f point, float g_min, float g_max) {
+    Vec3f vFrom(Vec3f point, Vec2f x_bounds, Vec2f y_bounds) {
         return (position - point);
     }
 

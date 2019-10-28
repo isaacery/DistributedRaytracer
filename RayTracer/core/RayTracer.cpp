@@ -29,7 +29,7 @@ Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples, boo
 		Material* m = h.mat;
 		return m->shade(scene, h, nbounces, nsamples, random);
 	} else {
-		return Vec3f(0,0,0);
+		return scene->getBackgroundColour();
 	}
 }
 
@@ -80,7 +80,9 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 			camera is located at origin and facing along negative z axis */
 			Matrix44f cameraToWorld = camera->getCameraToWorld();
 
-        	float grid_step = 1 / (float)camerasamples; // initialize step distance for grid
+			float grid_step = 1 / std::sqrt(camerasamples); // initialize step distance for grid
+	        int grid_width = std::sqrt(camerasamples);
+
 			// randomly sample lens uniformly
 			Vec3f total_light = Vec3f(0);
 			float focalDepth = camera->getFocus();
@@ -91,8 +93,12 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 				if (random) {
 					offset = camera->getPosition(); // offset from origin in camera space
 				} else {
-					offset = camera->getPosition(i*grid_step,(i+1)*grid_step);
-				}
+	                int x = i % grid_width; // sample grid x coordinate
+	                int y = i / grid_width; // sample grid y coordinate
+	                Vec2f x_bounds = Vec2f(x*grid_step,(x+1)*grid_step);
+	                Vec2f y_bounds = Vec2f(y*grid_step,(y+1)*grid_step);
+	                offset = camera->getPosition(x_bounds,y_bounds);
+	            }
 				cameraToWorld.multVecMatrix(origin+offset,origin); // transform origin
 				cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
 

@@ -38,7 +38,7 @@ public:
 		return Vec3f(0);
 	}
 
-	Vec3f getPosition(float g_min, float g_max) {
+	Vec3f getPosition(Vec2f x_bounds, Vec2f y_bounds) {
 		return Vec3f(0);
 	}
 

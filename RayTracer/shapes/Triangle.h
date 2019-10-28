@@ -8,6 +8,7 @@
 #define TRIANGLE_H_
 
 #include "core/Shape.h"
+#include "parsers/happly.h"
 
 using namespace rapidjson;
 

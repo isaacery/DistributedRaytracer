@@ -29,7 +29,7 @@ public:
     /* returns direction from point to light */
     virtual Vec3f vFrom(Vec3f point) = 0;
 
-    virtual Vec3f vFrom(Vec3f point, float g_min, float g_max) = 0; // for grid
+    virtual Vec3f vFrom(Vec3f point, Vec2f x_bounds, Vec2f y_bounds) = 0; // for grid
 
     virtual void print() = 0;
 

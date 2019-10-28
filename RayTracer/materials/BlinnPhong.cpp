@@ -32,17 +32,25 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
 
     /* shade using phong shading */
     for (LightSource* l : scene->getLightSources()) {
+        //l->print();
         float i_p_sum = 0; // total contribution of light l over nsamples samples
         int lightsamples = l->distributed() ? nsamples : 1; // only sample distributed lightsources
 
-        float grid_step = 1 / (float)lightsamples; // initialize step distance for grid
+        float grid_step = 1 / std::sqrt(lightsamples); // initialize step distance for grid
+        int grid_width = std::sqrt(lightsamples);
         //TODO: this grid method is wrong, but works well
         for (int i = 0; i < lightsamples; i++) { // sample lightsource nsamples times
             Vec3f light_v;
+            Vec2f x_bounds = Vec2f(0);
+            Vec2f y_bounds = Vec2f(0);
             if (random) {
                 light_v = l->vFrom(h.point);
             } else {
-                light_v = l->vFrom(h.point,i*grid_step,(i+1)*grid_step); // sample light only within grid
+                int x = i % grid_width; // sample grid x coordinate
+                int y = i / grid_width; // sample grid y coordinate
+                Vec2f x_bounds = Vec2f(x*grid_step,(x+1)*grid_step);
+                Vec2f y_bounds = Vec2f(y*grid_step,(y+1)*grid_step);
+                light_v = l->vFrom(h.point,x_bounds,y_bounds);
             }
             Vec3f light_dir = light_v.normalize(); // get direction from intersection point to light
             float light_dist = light_v.length();
