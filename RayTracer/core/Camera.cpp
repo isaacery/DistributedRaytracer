@@ -33,11 +33,7 @@ Camera* Camera::createCamera(Value& cameraSpecs){
 	std::string cameraType = cameraSpecs["type"].GetString();
 
 	// return camera object based on camera specs
-
-	Matrix44f cameraToWorld = Matrix44f(1, 0, 0, 0,
-						    			0, 1, 0, 0,
-						    			0, 0, 1, 3,
-						    			0, 0, 0, 1).transpose();
+	
 	Matrix44f cameraToWorld;
 	if (!cameraSpecs.HasMember("cameraToWorld")) {
 		cameraToWorld = Matrix44f(1, 0, 0, 0,
