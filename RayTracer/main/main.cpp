@@ -76,7 +76,7 @@ int main(int argc, char* argv[]){
 	Vec3f* pixelbuffer = RayTracer::render(camera, scene, d["nbounces"].GetInt(), nsamples, random);
 	auto stop = high_resolution_clock::now(); // measure stop time of render
 	float duration = duration_cast<milliseconds>(stop - start).count()/(float)1000;
-	printf("Rendering completed in %0.2f seconds\n", duration);
+	printf("\nRendering completed in %0.2f seconds\n", duration);
 	// free resources when rendering is finished
 	delete camera;
 	delete scene;

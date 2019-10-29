@@ -12,6 +12,9 @@
 #include "core/Shape.h"
 #include "cmath"
 
+#include <thread>
+#include <future>
+
 namespace rt{
 
 class Scene;
