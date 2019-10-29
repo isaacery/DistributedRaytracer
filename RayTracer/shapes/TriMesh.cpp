@@ -11,7 +11,7 @@ void TriMesh::createTriMesh(Value& shapeSpecs) {
     Triangle* triangle;
     Material* mat;
     Vec3f v0, v1, v2;
-    Matrix44f objectToWorld; //TODO only supported for .ply specified triangle meshes
+    Matrix44f objectToWorld;
     if (shapeSpecs.HasMember("objectToWorld")) {
         float a = shapeSpecs["objectToWorld"][0].GetFloat();
         float b = shapeSpecs["objectToWorld"][1].GetFloat();
