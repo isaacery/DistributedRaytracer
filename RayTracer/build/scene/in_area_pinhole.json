@@ -1,0 +1,123 @@
+{   "nbounces":2,
+    "nsamples":1,
+    "sampling":"grid",
+    "camera":{
+        "type":"pinhole",
+    	"width":500,
+    	"height":500,
+    	"fov":50,
+        "cameraToWorld":[1,0,0,0,
+                         0,0.707,0.707,4,
+                         0,-0.707,0.707,0,
+                         0,0,0,1]
+    },
+    "scene":{
+        "ambient": 0.25,
+    	"backgroundcolour": [0, 0, 0],
+        "textures":[
+            {
+            "name": "tex1",
+            "type": "constant",
+            "colour": [0.04, 0.42, 0.01]
+            },
+            {
+            "name": "ball1",
+            "type": "image",
+            "image": "Ball1.jpg",
+            "offset_u": 0.4,
+            "offset_v": 0.97
+            },
+            {
+            "name": "ball2",
+            "type": "image",
+            "image": "Ball2.jpg",
+            "offset_u": 0.6,
+            "offset_v": 0.05
+            },
+            {
+            "name": "8ball",
+            "type": "image",
+            "image": "Ball8.jpg",
+            "offset_u": 0.95,
+            "offset_v": 0.95
+            }
+        ], 
+        "materials":[
+            {
+            "name": "mat1",
+            "type": "blinnphong",
+            "ka": 0,
+            "ks": 0,
+            "kd": 0.75,
+            "alpha": 5,
+            "reflectance": 0,
+            "texture": "tex1"
+            },
+            {
+            "name": "ball1",
+            "type": "blinnphong",
+            "ka": 0.2,
+            "ks": 0.8,
+            "kd": 0.8,
+            "alpha": 8,
+            "reflectance": 0.5,
+            "texture": "ball1"
+            },
+            {
+            "name": "ball2",
+            "type": "blinnphong",
+            "ka": 0.2,
+            "ks": 0.8,
+            "kd": 0.8,
+            "alpha": 8,
+            "reflectance": 0.5,
+            "texture": "ball2"
+            },
+            {
+            "name": "8ball",
+            "type": "blinnphong",
+            "ka": 0.2,
+            "ks": 0.8,
+            "kd": 0.8,
+            "alpha": 8,
+            "reflectance": 0.5,
+            "texture": "8ball"
+            }
+        ],
+    	"lightsources":[
+    		{
+    		"type":"arealight",
+    		"e0": [0, 0, 2],
+    		"e1": [2, 0, 0],
+    		"p":  [0,3,-3],
+            "intensity": 1
+    		}
+    	],
+    	"shapes":[
+		{
+    		"type":"sphere",
+            "radius":1,
+            "center":[-1,0,-3],
+            "material":"ball1"
+        },
+		{
+    		"type":"sphere",
+            "radius":1,
+            "center":[1,0,-3],
+            "material":"ball2"
+        },
+		{
+    		"type":"sphere",
+            "radius":1.1,
+            "center":[-0.2,0,-5.5],
+            "material":"8ball"
+        },
+		{
+    		"type":"plane",
+            "distance":-1,
+            "normal":[0,1,0],
+            "material":"mat1"
+        }
+    	]
+    }
+}

@@ -63,13 +63,15 @@ int main(int argc, char* argv[]){
 		nsamples = d["nsamples"].GetInt();
 		if (d.HasMember("sampling")) {
 			string sampleType = d["sampling"].GetString();
-			if (sampleType.compare("grid") == 0) { // use grid sampling
-				 // convert nsamples to closest perfect square
-				random = false;
+			if (sampleType.compare("grid") == 0) {
+				random = false; // use jittered grid sampling
+				// convert nsamples to closest perfect square
 				nsamples = (int)std::pow(std::ceil(std::sqrt((float)nsamples)),2);
 			}
 		}
 	}
+
+	printf("Rendering with %i samples per pixel\nSampling method: %s\n", nsamples, d["sampling"].GetString());
 
 	auto start = high_resolution_clock::now(); // measure start time of render
 	// Main function, render scene

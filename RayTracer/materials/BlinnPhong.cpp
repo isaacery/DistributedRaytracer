@@ -27,7 +27,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
     Vec3f n = h.n;
     Vec3f dir = h.ray_in.d;
 
-    Vec3f out = Vec3f(0); // colour out
+    Vec3f out_reflective = Vec3f(0); // colour out due to reflection
 
     // total intensity, initialized to ambient light contribution
     float i_p = k_a * scene->getAmbientLight();
@@ -36,6 +36,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
     for (LightSource* l : scene->getLightSources()) {
         //l->print();
         float i_p_sum = 0; // total contribution of light l over nsamples samples
+        Vec3f out_reflective_sum = Vec3f(0); // total reflective contribution of light l over nsamples samples
         int lightsamples = l->distributed() ? nsamples : 1; // only sample distributed lightsources
 
         float grid_step = 1 / std::sqrt(lightsamples); // initialize step distance for grid
@@ -69,14 +70,15 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
             if (nbounces > 1 && r > 0) { // specular reflection contribution
                 Vec3f reflect_dir = (dir - 2 * dir.dotProduct(n) * n).normalize();
                 Ray ray_out = {SECONDARY,h.point+EPSILON*reflect_dir,reflect_dir}; // cast reflection ray
-                out = out + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples,random);
+                out_reflective_sum = out_reflective_sum + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples,random);
             }
             //} else { // non-reflective specular contribution
             i_p_sum += l->getIntersity() * k_s * std::pow(std::max(0.f,
                     light_reflection_dir.dotProduct(-dir)), alpha) * d_m;
             //}
         }
-        i_p += i_p_sum / lightsamples;
+        i_p += i_p_sum / lightsamples; // average over samples
+        out_reflective = out_reflective + out_reflective_sum * (1 / (float)lightsamples); // average over samples
     }
     /* calculate texture coordinates */
     float u = 0;
@@ -86,7 +88,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
     /* get colour from texture using texture coordinates */
     Vec3f colour = texture->value(u,v,h.point);
 
-    out = out + i_p * colour;
+    Vec3f out = out_reflective + i_p * colour;
 
     return out;
 }
