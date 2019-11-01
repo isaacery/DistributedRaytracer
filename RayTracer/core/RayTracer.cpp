@@ -77,8 +77,8 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 				// to ensure pixels remain square. Multiply by tangent to account for fov,
 				// assuming camera is one unit from sensor */
 				float t_fov = tan(camera->getFov() / 2 * M_PI / 180);
-				float x_w = (2 * x_ndc - 1) * t_fov * aspect;
-				float y_w = 1 - (2 * y_ndc * t_fov);
+				float x_w = (2 * x_ndc - 1) * t_fov;
+				float y_w = 1 - (2 * y_ndc) * t_fov;
 
 				/* Camera position and pixel position in camera space, assuming
 				camera is located at origin and facing along negative z axis */
