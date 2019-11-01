@@ -20,7 +20,7 @@ void Triangle::getUV(Vec3f p, float& u, float& v) {
 	v = uv.y;
 }
 
-void Triangle::createTriangle(Value& shapeSpecs) {
+void Triangle::createTriangle(Value& shapeSpecs) { // TODO: parse vertex normals, interpolate
 	float x = shapeSpecs["v0"][0].GetFloat();
 	float y = shapeSpecs["v0"][1].GetFloat();
 	float z = shapeSpecs["v0"][2].GetFloat();

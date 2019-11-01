@@ -27,6 +27,8 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
     Vec3f n = h.n;
     Vec3f dir = h.ray_in.d;
 
+    Vec3f out = Vec3f(0); // colour out
+
     // total intensity, initialized to ambient light contribution
     float i_p = k_a * scene->getAmbientLight();
 
@@ -63,9 +65,16 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
             if (s.itsct && s.t < light_dist) continue; // if there's a shape between point and light, skip to next light
 
             /* calculate diffuse and specular shading */
-            i_p_sum += (l->getIntersity() * k_d * std::max(0.f,(light_dir).dotProduct(n))) * d_m; // diffuse
+            i_p_sum += (l->getIntersity() * k_d * std::max(0.f,(light_dir).dotProduct(n))) * d_m; // diffuse contribution
+            if (nbounces > 1 && r > 0) { // specular reflection contribution
+                Vec3f reflect_dir = (dir - 2 * dir.dotProduct(n) * n).normalize();
+                Ray ray_out = {SECONDARY,h.point+EPSILON*reflect_dir,reflect_dir}; // cast reflection ray
+                out = out + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples,random);
+            }
+            //} else { // non-reflective specular contribution
             i_p_sum += l->getIntersity() * k_s * std::pow(std::max(0.f,
-                    light_reflection_dir.dotProduct(-dir)), alpha) * d_m; // specular
+                    light_reflection_dir.dotProduct(-dir)), alpha) * d_m;
+            //}
         }
         i_p += i_p_sum / lightsamples;
     }
@@ -77,15 +86,7 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
     /* get colour from texture using texture coordinates */
     Vec3f colour = texture->value(u,v,h.point);
 
-    Vec3f out = i_p * colour;
-
-    /* recursively trace ray for reflection */
-    if (nbounces > 1 && r > 0) {
-        Vec3f reflect_dir = (dir - 2 * dir.dotProduct(n) * n).normalize();
-        Ray ray_out = {SECONDARY,h.point+EPSILON*reflect_dir,reflect_dir}; // cast reflection ray
-        // interpolate between phong shaded intensity and reflection
-        out = (1-r) * out  + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples,random);
-    }
+    out = out + i_p * colour;
 
     return out;
 }

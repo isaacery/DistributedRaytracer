@@ -65,7 +65,7 @@ Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsample
 				int x_r = index % height;
 				int y_r = index / width;
 				//std::printf("%u %u \n", y_r, x_r );
-				if (x_r % 10 == 0) {
+				if (index % 10 == 0) {
 					printf("\r%.0f%% completed", (float)((y_r*width + x_r)*100)/(width*height));
 				}
 

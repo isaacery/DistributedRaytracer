@@ -20,6 +20,8 @@ private:
     Vec3f* img; // image data
     int width; // width of image
     int height; // height of image
+    float offset_u; // offset u in [0,1]
+    float offset_v; // offset v in [0,1]
 
     void loadImg(string path);
 };
