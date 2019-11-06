@@ -7,10 +7,13 @@
 
 #include "math/geometry.h"
 #include "core/Material.h"
+#include "core/Shape.h"
 
 namespace rt{
 
 class Material;
+
+class Shape;
 /*
  * Ray structure definition
  */
@@ -30,6 +33,7 @@ struct Hit{
 	Vec3f n = Vec3f(0); // normal vector at point of intersection
 	Vec3f point = Vec3f(0); // point of intersection
 	Material* mat; // material at point where ray hits a shape
+	Shape* shape;
 };
 
 }

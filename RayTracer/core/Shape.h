@@ -8,11 +8,14 @@
 
 #include "core/Material.h"
 #include "core/RayHitStructs.h"
+#include "math/geometry.h"
 #include "rapidjson/document.h"
 
 namespace rt{
 
 class Material;
+
+class BoundingBox;
 
 struct Hit;
 
@@ -32,15 +35,13 @@ public:
 		this->material = material;
 	}
 
-	//
-	// Destructor (must be overriden in subclass)
-	//
 	virtual ~Shape(){};
 
-	//
-	// Shape abstract methods (to be implemented by subclasses)
-	//
-	virtual Hit intersect(Ray ray)=0;
+	virtual Hit intersect(Ray ray) = 0;
+
+	virtual void getUV(Vec3f p, float& u, float& v) = 0;
+
+	virtual BoundingBox* getBoundingBox() = 0;
 
 
 protected:

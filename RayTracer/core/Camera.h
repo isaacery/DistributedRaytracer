@@ -45,6 +45,8 @@ public:
 
 	virtual Vec3f getPosition() = 0;
 
+	virtual Vec3f getPosition(Vec2f x_bounds, Vec2f y_bounds) = 0;
+
     /* true if Camera uses sampling */
 	virtual bool distributed() = 0;
 

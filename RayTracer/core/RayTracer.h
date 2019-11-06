@@ -12,6 +12,9 @@
 #include "core/Shape.h"
 #include "cmath"
 
+#include <thread>
+#include <future>
+
 namespace rt{
 
 class Scene;
@@ -24,9 +27,9 @@ public:
 
 	RayTracer();
 
-	static Vec3f* render(Camera* camera, Scene* scene, int nbounces, int nsamples);
+	static Vec3f* render(Camera* camera, Scene* scene, int nbounces, int nsamples, bool random);
 	static Hit getIntersection(Scene* scene, Ray ray);
-	static Vec3f rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples);
+	static Vec3f rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples, bool random);
 	static Vec3f* tonemap(Vec3f* pixelbuffer, int len);
 
 

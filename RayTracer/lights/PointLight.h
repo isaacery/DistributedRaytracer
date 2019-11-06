@@ -27,7 +27,11 @@ public:
     void createPointLight(Value& lightSpecs);
 
     Vec3f vFrom(Vec3f point) {
-        return (position - point); //TODO: normalize?
+        return (position - point);
+    }
+
+    Vec3f vFrom(Vec3f point, Vec2f x_bounds, Vec2f y_bounds) {
+        return (position - point);
     }
 
     void print() {

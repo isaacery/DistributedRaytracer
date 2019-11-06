@@ -23,13 +23,14 @@ Hit RayTracer::getIntersection(Scene* scene, Ray ray) {
 }
 
 /* Returns the resulting r,g,b value from recursively tracing ray */
-Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples) {
+Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples, bool random) {
+	nsamples = (ray.raytype == PRIMARY) ? nsamples : 1; // only use multiple samples on primary rays
 	Hit h = getIntersection(scene, ray);
 	if (h.itsct) {
 		Material* m = h.mat;
-		return m->shade(scene, h, nbounces, nsamples);
+		return m->shade(scene, h, nbounces, nsamples, random);
 	} else {
-		return Vec3f(0,0,0);
+		return scene->getBackgroundColour();
 	}
 }
 
@@ -44,65 +45,80 @@ Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples) {
  *
  * @return a pixel buffer containing pixel values in linear RGB format
  */
-Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsamples){
-	int x_r, y_r;
-	float x_ndc, y_ndc, x_w, y_w, t_fov;
-
+Vec3f* RayTracer::render(Camera* camera, Scene* scene, int nbounces, int nsamples, bool random){
 	int width = camera->getWidth();
 	int height = camera->getHeight();
 	float aspect = (float)width / height;
 
-	int camerasamples = camera->distributed() ? nsamples : 1;
+	int camerasamples = camera->distributed() ? nsamples : 1; // sample only once if camera is pinhole
 
 	Vec3f* pixelbuffer = new Vec3f[width*height];
 
 	Vec3f* start = pixelbuffer;
 
-	for (int y_r = 0; y_r < height; y_r++) { // loop through pixels in buffer
-		for (int x_r = 0; x_r < width; x_r++) {
-			if (x_r % 10 == 0) {
-				printf("\r%.0f%% completed", (float)((y_r*width + x_r)*100)/(width*height));
-			}
-			//std::printf("%u %u \n", y_r, x_r );
+	std::size_t n = width * height;
+	std::size_t cores = std::thread::hardware_concurrency();
+	std::vector<std::future<void>> future_vector;
 
-			// // get normalized device coordinates for pixel
-			x_ndc = (x_r + 0.5) / width;
-			y_ndc = (y_r + 0.5) / height;
+	for (std::size_t i(0); i < cores; i++)
+	    future_vector.emplace_back(std::async([=, &scene]() {
+            for (std::size_t index(i); index < n; index += cores) {
+				int x_r = index % height;
+				int y_r = index / width;
+				//std::printf("%u %u \n", y_r, x_r );
+				if (index % 10 == 0) {
+					printf("\r%.0f%% completed", (float)((y_r*width + x_r)*100)/(width*height));
+				}
 
-			// /* Get camera space coordinates for pixel. Multiply x by aspect ratio
-			// to ensure pixels remain square. Multiply by tangent to account for fov,
-			// assuming camera is one unit from sensor */
-			float t_fov = tan(camera->getFov() / 2 * M_PI / 180);
-			float x_w = (2 * x_ndc - 1) * t_fov * aspect;
-			float y_w = 1 - (2 * y_ndc) * t_fov;
+				// // get normalized device coordinates for pixel
+				float x_ndc = (x_r + 0.5) / width;
+				float y_ndc = (y_r + 0.5) / height;
 
-			/* Camera position and pixel position in camera space, assuming
-			camera is located at origin and facing along negative z axis */
-			Matrix44f cameraToWorld = camera->getCameraToWorld();
+				// /* Get camera space coordinates for pixel. Multiply x by aspect ratio
+				// to ensure pixels remain square. Multiply by tangent to account for fov,
+				// assuming camera is one unit from sensor */
+				float t_fov = tan(camera->getFov() / 2 * M_PI / 180);
+				float x_w = (2 * x_ndc - 1) * t_fov * aspect;
+				float y_w = (1 - (2 * y_ndc)) * t_fov;
 
-			// randomly sample lens uniformly TODO: perform once for pinhole
-			Vec3f total_light = Vec3f(0);
-			float focalDepth = camera->getFocus();
-			for (int i = 0; i < camerasamples; i++) {
-				Vec3f direction;
-				Vec3f origin = Vec3f(0);
-				Vec3f offset = camera->getPosition(); // offset from origin in camera space
-				cameraToWorld.multVecMatrix(origin+offset,origin); // transform origin
-				cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
+				/* Camera position and pixel position in camera space, assuming
+				camera is located at origin and facing along negative z axis */
+				Matrix44f cameraToWorld = camera->getCameraToWorld();
 
-				direction *= focalDepth;
-				direction = direction - offset;
-				direction = direction.normalize();
+				float grid_step = 1 / std::sqrt(camerasamples); // initialize step distance for grid
+		        int grid_width = std::sqrt(camerasamples);
 
-				Ray ray = {PRIMARY,origin,direction};
-				Vec3f light = rayTrace(scene, ray, nbounces, nsamples); // trace ray and save result to pixel
-				total_light = light + total_light;
-			}
-			float d = 1/(float)nsamples;
-			*(pixelbuffer++) = d * total_light; // trace ray and save result to pixel
-		}
-	}
-	printf("\n");
+				// randomly sample lens uniformly
+				Vec3f total_light = Vec3f(0);
+				float focalDepth = camera->getFocus();
+				for (int s = 0; s < camerasamples; s++) {
+					Vec3f direction;
+					Vec3f origin = Vec3f(0);
+					Vec3f offset;
+					if (random) {
+						offset = camera->getPosition(); // offset from origin in camera space
+					} else {
+		                int x = s % grid_width; // sample grid x coordinate
+		                int y = s / grid_width; // sample grid y coordinate
+		                Vec2f x_bounds = Vec2f(x*grid_step,(x+1)*grid_step);
+		                Vec2f y_bounds = Vec2f(y*grid_step,(y+1)*grid_step);
+		                offset = camera->getPosition(x_bounds,y_bounds);
+		            }
+					cameraToWorld.multVecMatrix(origin+offset,origin); // transform origin
+					cameraToWorld.multDirMatrix(Vec3f(x_w,y_w,-1),direction); // transform ray through pixel
+
+					direction *= focalDepth;
+					direction = direction - offset;
+					direction = direction.normalize();
+
+					Ray ray = {PRIMARY,origin,direction};
+					Vec3f light = rayTrace(scene, ray, nbounces, nsamples, random); // trace ray and save result to pixel
+					total_light = light + total_light;
+				}
+				float d = 1/(float)camerasamples;
+				pixelbuffer[index] = d * total_light; // trace ray and save result to pixel
+            }
+		}));
 	return start;
 }
 

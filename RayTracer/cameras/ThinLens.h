@@ -47,6 +47,14 @@ public:
 		return Vec3f(r*cos(theta),r*sin(theta),0); // return random point on lens
 	}
 
+	Vec3f getPosition(Vec2f x_bounds, Vec2f y_bounds) { // jittered grid sampling
+		float u = x_bounds.x + ((double) rand() / (RAND_MAX/(x_bounds.y-x_bounds.x)));
+        float v = y_bounds.x + ((double) rand() / (RAND_MAX/(y_bounds.y-y_bounds.x)));
+		float r = u * radius; // randomly generate r in [0,radius]
+		float theta = v * 2 * M_PI; // randomly generate theta in [0, 2pi]
+		return Vec3f(r*cos(theta),r*sin(theta),0); // return random point on lens
+	}
+
 	bool distributed() {
 		return true;
 	}

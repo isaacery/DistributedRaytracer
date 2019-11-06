@@ -1,22 +1,24 @@
 #include <string>
 #include <map>
 
-//#include "core/Material.h"
 #include "materials/BlinnPhong.h"
-
 #include "core/Scene.h"
 
-//#include "core/Camera.h"
+#include "textures/ConstantTexture.h"
+#include "textures/CheckerTexture.h"
+#include "textures/ImageTexture.h"
+
 #include "cameras/Pinhole.h"
 
 #include "lights/PointLight.h"
 #include "lights/AreaLight.h"
 
-// #include "core/Shape.h"
+
 #include "shapes/Plane.h"
 #include "shapes/Sphere.h"
 #include "shapes/Triangle.h"
 #include "shapes/TriMesh.h"
+#include "shapes/Quad.h"
 
 using namespace rapidjson;
 using std::string;
@@ -27,7 +29,37 @@ class Parser{
 
 public:
 
-    static void parseMaterials(Value& mats, std::map<string,Material*>& materials) {
+    inline static std::map<string,Material*> materials;
+    inline static std::map<string,Texture*> textures;
+    inline static std::vector<Shape*> shapes;
+    inline static std::vector<LightSource*> lights;
+
+    static void parseTextures(Value& texs) {
+        Texture* t;
+        if (texs.IsArray()) {
+    		std::cout<<"Parsing "<<texs.Size()<<" textures\n";
+    		for (SizeType i = 0; i < texs.Size(); i++) {
+    			Value textureSpecs = texs[i].GetObject();
+    			string textureType = textureSpecs["type"].GetString();
+    			if (textureType.compare("constant") == 0) {
+    				ConstantTexture* o = new ConstantTexture();
+    				o->createConstantTexture(textureSpecs);
+    				t = o;
+    			} else if (textureType.compare("checker") == 0) {
+                    CheckerTexture* o = new CheckerTexture();
+                    o->createCheckerTexture(textureSpecs, textures);
+                    t = o;
+                } else if (textureType.compare("image") == 0) {
+                    ImageTexture* o = new ImageTexture();
+                    o->createImageTexture(textureSpecs);
+                    t = o;
+            }
+    			textures.insert(std::pair<string,Texture*>(textureSpecs["name"].GetString(),t));
+    		}
+    	}
+    }
+
+    static void parseMaterials(Value& mats) {
         Material* m;
         //Value& mats = d["materials"];
         //std::map<string,Material*> materials;
@@ -38,7 +70,7 @@ public:
     			string materialType = materialSpecs["type"].GetString();
     			if (materialType.compare("blinnphong") == 0) {
     				BlinnPhong* o = new BlinnPhong();
-    				o->createBlinnPhong(materialSpecs);
+    				o->createBlinnPhong(materialSpecs, textures);
     				m = o;
     			}
     			materials.insert(std::pair<string,Material*>(materialSpecs["name"].GetString(),m));
@@ -46,7 +78,7 @@ public:
     	}
     }
 
-    static void parseShapes(Value& shps, std::vector<Shape*>& shapes, std::map<string,Material*>& materials) {
+    static void parseShapes(Value& shps) {
         Shape* s;
     	//Value& shps = d["shapes"];
     	//std::vector<Shape*> shapes;
@@ -72,14 +104,19 @@ public:
     				o->createTriMesh(shapeSpecs);
                     o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
     				s = o;
-    			}
+                } else if (shapeType.compare("quad") == 0) {
+                    Quad* o = new Quad();
+                    o->createQuad(shapeSpecs);
+                    o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
+                    s = o;
+                }
                 s->setMaterial(materials[shapeSpecs["material"].GetString()]);
     			shapes.push_back(s);
     		}
     	}
     }
 
-    static void parseLights(Value& lts, std::vector<LightSource*>& lights) {
+    static void parseLights(Value& lts) {
         LightSource* l;
         if (lts.IsArray()) {
             std::cout<<"Parsing "<<lts.Size()<<" lights\n";
@@ -102,12 +139,10 @@ public:
 
     /* parse scene information from raytracer input file */
     static Scene* parseScene(Value& d) {
-        std::map<string,Material*> materials;
-        std::vector<Shape*> shapes;
-    	std::vector<LightSource*> lights;
-        parseMaterials(d["materials"], materials); // parse materials
-        parseShapes(d["shapes"], shapes, materials); // parse shapes
-        parseLights(d["lightsources"], lights); // parse lights
+        parseTextures(d["textures"]);
+        parseMaterials(d["materials"]); // parse materials
+        parseShapes(d["shapes"]); // parse shapes
+        parseLights(d["lightsources"]); // parse lights
     	float r = d["backgroundcolour"][0].GetFloat(); // parse background colour
     	float g = d["backgroundcolour"][1].GetFloat();
     	float b = d["backgroundcolour"][2].GetFloat();
