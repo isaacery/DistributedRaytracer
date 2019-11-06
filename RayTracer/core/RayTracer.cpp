@@ -24,6 +24,7 @@ Hit RayTracer::getIntersection(Scene* scene, Ray ray) {
 
 /* Returns the resulting r,g,b value from recursively tracing ray */
 Vec3f RayTracer::rayTrace(Scene* scene, Ray ray, int nbounces, int nsamples, bool random) {
+	nsamples = (ray.raytype == PRIMARY) ? nsamples : 1; // only use multiple samples on primary rays
 	Hit h = getIntersection(scene, ray);
 	if (h.itsct) {
 		Material* m = h.mat;

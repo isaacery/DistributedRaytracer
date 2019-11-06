@@ -6,9 +6,13 @@
 #include "Plane.h"
 
 
-namespace rt{
+namespace rt {
 
 void Plane::getUV(Vec3f p, float& u, float& v) {}
+
+BoundingBox* Plane::getBoundingBox() {
+	return new BoundingBox(Vec3f(-INFINITY),Vec3f(INFINITY));
+}
 
 void Plane::createPlane(Value& shapeSpecs) {
 	float x = shapeSpecs["normal"][0].GetFloat();

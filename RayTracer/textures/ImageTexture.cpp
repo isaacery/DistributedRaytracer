@@ -5,7 +5,7 @@
 
 namespace rt {
 
-void ImageTexture::loadImg(string path) { // assumes 8 bit per channel image TODO: generalise
+void ImageTexture::loadImg(string path) { // assumes 8 bit per channel image
     int w_x = 0;
     int w_y = 0;
     int nbits = 0;
@@ -44,7 +44,7 @@ Vec3f ImageTexture::value(float u, float v, Vec3f point) const {
         v_new -= 1;
     }
     int i = width * u_new;
-    int j = height * (1-v_new); // - 0.001
+    int j = height * (1-v_new);
     i = std::min(std::max(0,i),width-1);
     j = std::min(std::max(0,j),height-1);
     return img[j*width+i];

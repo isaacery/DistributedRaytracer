@@ -34,14 +34,12 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
 
     /* shade using phong shading */
     for (LightSource* l : scene->getLightSources()) {
-        //l->print();
         float i_p_sum = 0; // total contribution of light l over nsamples samples
         Vec3f out_reflective_sum = Vec3f(0); // total reflective contribution of light l over nsamples samples
         int lightsamples = l->distributed() ? nsamples : 1; // only sample distributed lightsources
 
         float grid_step = 1 / std::sqrt(lightsamples); // initialize step distance for grid
         int grid_width = std::sqrt(lightsamples);
-        //TODO: this grid method is wrong, but works well
         for (int i = 0; i < lightsamples; i++) { // sample lightsource nsamples times
             Vec3f light_v;
             Vec2f x_bounds = Vec2f(0);
@@ -72,9 +70,8 @@ Vec3f BlinnPhong::shade(Scene* scene, Hit h, int nbounces, int nsamples, bool ra
                 Ray ray_out = {SECONDARY,h.point+EPSILON*reflect_dir,reflect_dir}; // cast reflection ray
                 out_reflective_sum = out_reflective_sum + r * RayTracer::rayTrace(scene,ray_out,nbounces-1,nsamples,random);
             }
-            //} else { // non-reflective specular contribution
             i_p_sum += l->getIntersity() * k_s * std::pow(std::max(0.f,
-                    light_reflection_dir.dotProduct(-dir)), alpha) * d_m;
+                    light_reflection_dir.dotProduct(-dir)), alpha) * d_m; // specular contribution
             //}
         }
         i_p += i_p_sum / lightsamples; // average over samples

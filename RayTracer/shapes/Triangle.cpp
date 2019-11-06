@@ -9,6 +9,15 @@
 
 namespace rt{
 
+/* return bounding box that bounds triangle */
+BoundingBox* Triangle::getBoundingBox() {
+	BoundingBox* box = new BoundingBox;
+	box->add(v0);
+	box->add(v1);
+	box->add(v2);
+	return box;
+}
+
 /* interpolate between uv coordinates at each vertex */
 void Triangle::getUV(Vec3f p, float& u, float& v) {
 	float a;

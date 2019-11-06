@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
 		}
 	}
 
-	printf("Rendering with %i samples per pixel\nSampling method: %s\n", nsamples, d["sampling"].GetString());
+	printf("Rendering with %i samples per pixel\n", nsamples);
 
 	auto start = high_resolution_clock::now(); // measure start time of render
 	// Main function, render scene

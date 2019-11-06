@@ -10,6 +10,7 @@
 #include "core/Shape.h"
 #include "shapes/Triangle.h"
 #include "core/Material.h"
+#include "shapes/BoundingBox.h"
 
 using namespace rapidjson;
 
@@ -47,6 +48,8 @@ public:
     void getUV(Vec3f p, float& u, float& v) {}
 
     Hit intersect(Ray ray);
+
+    BoundingBox* getBoundingBox();
 
 private:
     //std::vector<Vec3f> tInd; // triangle index, each entry point to three vertices

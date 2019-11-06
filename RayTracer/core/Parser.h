@@ -18,6 +18,7 @@
 #include "shapes/Sphere.h"
 #include "shapes/Triangle.h"
 #include "shapes/TriMesh.h"
+#include "shapes/Quad.h"
 
 using namespace rapidjson;
 using std::string;
@@ -36,7 +37,7 @@ public:
     static void parseTextures(Value& texs) {
         Texture* t;
         if (texs.IsArray()) {
-    		std::cout<<"Parsing "<<texs.Size()<<" materials\n";
+    		std::cout<<"Parsing "<<texs.Size()<<" textures\n";
     		for (SizeType i = 0; i < texs.Size(); i++) {
     			Value textureSpecs = texs[i].GetObject();
     			string textureType = textureSpecs["type"].GetString();
@@ -103,7 +104,12 @@ public:
     				o->createTriMesh(shapeSpecs);
                     o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
     				s = o;
-    			}
+                } else if (shapeType.compare("quad") == 0) {
+                    Quad* o = new Quad();
+                    o->createQuad(shapeSpecs);
+                    o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
+                    s = o;
+                }
                 s->setMaterial(materials[shapeSpecs["material"].GetString()]);
     			shapes.push_back(s);
     		}

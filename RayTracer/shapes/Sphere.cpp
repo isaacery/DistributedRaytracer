@@ -17,6 +17,11 @@ void Sphere::createSphere(Value& shapeSpecs) {
 	radius = shapeSpecs["radius"].GetFloat(); // parse radius
 }
 
+/* get bounding box that bounds sphere */
+BoundingBox* Sphere::getBoundingBox() {
+	return new BoundingBox(center - Vec3f(radius), center + Vec3f(radius));
+}
+
 /* update uv coordinates at point of intersection p on sphere */
 void Sphere::getUV(Vec3f p, float& u, float& v) {
 	float theta1 = atan2(-(p.z-center.z), p.x-center.x);

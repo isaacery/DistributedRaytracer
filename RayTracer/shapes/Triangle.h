@@ -9,6 +9,7 @@
 
 #include "core/Shape.h"
 #include "parsers/happly.h"
+#include "shapes/BoundingBox.h"
 
 using namespace rapidjson;
 
@@ -25,7 +26,7 @@ public:
             this->v0 = v0;
             this->v1 = v1;
             this->v2 = v2;
-            this->v0_uv = Vec2f(0,0); // TODO: random?
+            this->v0_uv = Vec2f(0,0);
             this->v1_uv = Vec2f(1,0);
             this->v2_uv = Vec2f(1,1);
         }
@@ -47,6 +48,8 @@ public:
     void getUV(Vec3f p, float& u, float& v);
 
     void barycentric(Vec3f p, float &a, float&b, float&c);
+
+    BoundingBox* getBoundingBox();
 
 private:
     /* v0 -- v1

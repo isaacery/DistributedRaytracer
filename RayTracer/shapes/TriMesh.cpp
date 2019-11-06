@@ -63,6 +63,14 @@ void TriMesh::createTriMesh(Value& shapeSpecs) {
     }
 }
 
+BoundingBox* TriMesh::getBoundingBox() {
+    BoundingBox* box = new BoundingBox();
+    for (Triangle* t : triangles) {
+        box->add(t->getBoundingBox());
+    }
+    return box;
+}
+
 Hit TriMesh::intersect(Ray ray) {
     Hit closest;
     closest.itsct = false;
