@@ -19,9 +19,9 @@ class Sphere:public Shape{
 
 public:
 	// Constructors
-	Sphere():Shape(){};
+	Sphere():Shape(nullptr,getBoundingBox()){};
 	Sphere(Vec3f center, float radius, Material* material):
-		Shape(material) {
+		Shape(material,getBoundingBox()) {
 			this->center = center;
 			this->radius = radius;
 		}

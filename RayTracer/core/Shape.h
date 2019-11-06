@@ -15,9 +15,9 @@ namespace rt{
 
 class Material;
 
-class BoundingBox;
-
 struct Hit;
+
+class BoundingBox;
 
 struct Ray;
 
@@ -29,7 +29,8 @@ public:
 	//
 	Shape(){};
 
-	Shape(Material* material): material(material){};
+	Shape(Material* material, BoundingBox* boundingBox):
+		material(material), boundingBox(boundingBox){};
 
 	void setMaterial(Material* material) {
 		this->material = material;
@@ -46,7 +47,7 @@ public:
 
 protected:
 	Material* material;
-
+	BoundingBox* boundingBox;
 };
 
 

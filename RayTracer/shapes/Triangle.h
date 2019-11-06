@@ -19,10 +19,10 @@ class Triangle: public Shape{
 
 public:
     // Constructors
-    Triangle():Shape(){};
+    Triangle():Shape(nullptr,getBoundingBox()){};
 
     Triangle(Vec3f v0, Vec3f v1, Vec3f v2, Material* material):
-        Shape(material) {
+        Shape(material,getBoundingBox()) {
             this->v0 = v0;
             this->v1 = v1;
             this->v2 = v2;
@@ -32,7 +32,7 @@ public:
         }
 
     Triangle(Vec3f v0, Vec2f v0_uv, Vec3f v1, Vec2f v1_uv, Vec3f v2, Vec2f v2_uv, Material* material):
-        Shape(material) {
+        Shape(material,getBoundingBox()) {
             this->v0 = v0;
             this->v1 = v1;
             this->v2 = v2;

@@ -59,7 +59,7 @@ void Quad::createQuad(Value& shapeSpecs) {
 }
 
 BoundingBox* Quad::getBoundingBox() {
-    return mesh->getBoundingBox();
+    return mesh->getBoundingBox(); // don't need bounding box
 }
 
 Hit Quad::intersect(Ray ray){

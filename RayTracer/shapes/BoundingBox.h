@@ -22,7 +22,7 @@ public:
 		max(Vec3f(-INFINITY, -INFINITY, -INFINITY)){};
     // min is min corner of BoundingBox, max is max corner, material is irrelevant
 	BoundingBox(Vec3f min, Vec3f max):
-		Shape(material = nullptr) {
+		Shape(nullptr,getBoundingBox()) {
             this->min = min;
 			this->max = max;
 		}

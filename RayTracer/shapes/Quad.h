@@ -21,9 +21,9 @@ class Quad:public Shape{
 
 public:
 	// Constructors
-	Quad():Shape(){};
+	Quad():Shape(nullptr,getBoundingBox()){};
 	Quad(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3):
-		Shape(material) {}
+		Shape(material,getBoundingBox()) {}
 
 	Hit intersect(Ray ray);
 
