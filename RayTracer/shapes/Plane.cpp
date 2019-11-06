@@ -33,15 +33,13 @@ void Plane::createPlane(Value& shapeSpecs) {
  */
 Hit Plane::intersect(Ray ray){
 	Hit none = {.itsct=false}; // default to no intersection
-	if (boundingBox->intersect(ray).itsct) {
-		float denom = n.dotProduct(ray.d);
-		float t = n.dotProduct(p-ray.o) / denom;
-		if (t > 0) { // intersection occurred
-			// construct and return hit
-			Vec3f p_hit = ray.o + t * ray.d; // point hit
-			Hit h = {true,t,ray,n,p_hit,material,this};
-			return h;
-		}
+	float denom = n.dotProduct(ray.d);
+	float t = n.dotProduct(p-ray.o) / denom;
+	if (t > 0) { // intersection occurred
+		// construct and return hit
+		Vec3f p_hit = ray.o + t * ray.d; // point hit
+		Hit h = {true,t,ray,n,p_hit,material,this};
+		return h;
 	}
     return none;
 }

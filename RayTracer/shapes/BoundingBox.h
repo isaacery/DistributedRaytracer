@@ -22,7 +22,7 @@ public:
 		max(Vec3f(-INFINITY, -INFINITY, -INFINITY)){};
     // min is min corner of BoundingBox, max is max corner, material is irrelevant
 	BoundingBox(Vec3f min, Vec3f max):
-		Shape(nullptr,getBoundingBox()) {
+		Shape() {
             this->min = min;
 			this->max = max;
 		}
@@ -43,9 +43,11 @@ public:
 
 	bool contains(BoundingBox* box); // return true if this box contains provided bounding box
 
-private:
 	Vec3f min;
     Vec3f max;
+
+private:
+	//TODO: return min and max to here
 };
 
 

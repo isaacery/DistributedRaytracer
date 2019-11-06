@@ -21,9 +21,19 @@ class Quad:public Shape{
 
 public:
 	// Constructors
-	Quad():Shape(nullptr,getBoundingBox()){};
-	Quad(Vec3f v0, Vec3f v1, Vec3f v2, Vec3f v3):
-		Shape(material,getBoundingBox()) {}
+	Quad():Shape(){};
+	Quad(Vec3f p, Vec3f e0, Vec3f e1, Material* m):
+		Shape(material) {
+			Vec3f v0 = p;
+			Vec3f v1 = p + e0;
+			Vec3f v2 = p + e1;
+			Vec3f v3 = p + e0 + e1;
+			Vec2f uv = Vec2f(0);
+			Triangle* t1 = new Triangle(v0,uv,v1,uv,v2,uv,m); // TODO: uv
+			Triangle* t2 = new Triangle(v3,uv,v1,uv,v2,uv,m);
+			std::vector<Triangle*> tris = {t1,t2};
+			this->mesh = new TriMesh(tris,m);
+		}
 
 	Hit intersect(Ray ray);
 

@@ -28,9 +28,9 @@ using namespace rapidjson;
 class TriMesh:public Shape{
 public:
     // constructors
-    TriMesh():Shape(nullptr,getBoundingBox()){};
+    TriMesh():Shape(){};
     TriMesh(std::vector<Triangle*> triangles, Material* material):
-        Shape(material,getBoundingBox()) {
+        Shape(material) {
             // update material of every triangle to material of mesh
             this->triangles = triangles;
             setMaterial(material);

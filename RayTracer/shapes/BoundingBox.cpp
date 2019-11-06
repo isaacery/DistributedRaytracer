@@ -9,8 +9,19 @@ void BoundingBox::add(Vec3f p) {
 	min.y = std::min(p.y,min.y);
 	min.z = std::min(p.z,min.z);
 	max.x = std::max(p.x,max.x);
-	max.z = std::max(p.y,max.y);
+	max.y = std::max(p.y,max.y);
 	max.z = std::max(p.z,max.z);
+	// if (p.y == -INFINITY) {
+	// 	printf("p: %f,%f,%f\n",p.x,p.y,p.z);
+	// 	printf("%f,%f,%f\n",min.x,min.y,min.z);
+	// 	printf("%f,%f,%f\n",max.x,max.y,max.z);
+	// }
+}
+
+/* add two bounding boxes together to produce a larger bounding box */
+void BoundingBox::add(BoundingBox* box) {
+	this->add(box->min);
+	this->add(box->max);
 }
 
 /* intersection functon for bounding box - adapted from
@@ -57,12 +68,6 @@ Hit BoundingBox::intersect(Ray ray) {
 
 	h.itsct = true;
     return h;
-}
-
-/* add two bounding boxes together to produce a larger bounding box */
-void BoundingBox::add(BoundingBox* box) {
-	this->add(box->min);
-	this->add(box->max);
 }
 
 /* return true if box contans point p */

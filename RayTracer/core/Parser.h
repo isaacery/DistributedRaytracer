@@ -102,14 +102,15 @@ public:
     			} else if (shapeType.compare("trianglemesh") == 0) {
     				TriMesh* o = new TriMesh();
     				o->createTriMesh(shapeSpecs);
-                    o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
+                    o->setMaterial(materials[shapeSpecs["material"].GetString()]);
     				s = o;
                 } else if (shapeType.compare("quad") == 0) {
                     Quad* o = new Quad();
                     o->createQuad(shapeSpecs);
-                    o->setMaterial(materials[shapeSpecs["material"].GetString()]); // TODO: inelegant
+                    o->setMaterial(materials[shapeSpecs["material"].GetString()]);
                     s = o;
                 }
+                s->setBoundingBox(s->getBoundingBox()); // TODO: this is awful
                 s->setMaterial(materials[shapeSpecs["material"].GetString()]);
     			shapes.push_back(s);
     		}

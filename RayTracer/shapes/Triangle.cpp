@@ -11,7 +11,7 @@ namespace rt{
 
 /* return bounding box that bounds triangle */
 BoundingBox* Triangle::getBoundingBox() {
-	BoundingBox* box = new BoundingBox;
+	BoundingBox* box = new BoundingBox();
 	box->add(v0);
 	box->add(v1);
 	box->add(v2);

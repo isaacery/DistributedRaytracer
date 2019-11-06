@@ -29,11 +29,15 @@ public:
 	//
 	Shape(){};
 
-	Shape(Material* material, BoundingBox* boundingBox):
-		material(material), boundingBox(boundingBox){};
+	Shape(Material* material):
+		material(material){};
 
 	void setMaterial(Material* material) {
 		this->material = material;
+	}
+
+	void setBoundingBox(BoundingBox* boundingBox) {
+		this->boundingBox = boundingBox;
 	}
 
 	virtual ~Shape(){};

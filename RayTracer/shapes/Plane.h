@@ -19,10 +19,10 @@ class Plane:public Shape{
 
 public:
 	// Constructors
-	Plane():Shape(nullptr,getBoundingBox()){};
+	Plane():Shape(){};
     // n is normal vector of plane, d distance from plane to origin
 	Plane(Vec3f n, float d, Material* material):
-		Shape(material,getBoundingBox()) {
+		Shape(material) {
             this->n = n.normalize();
 			this->p = this->n * d;
 		}
