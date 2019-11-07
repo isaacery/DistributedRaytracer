@@ -41,9 +41,6 @@ void TriMesh::createTriMesh(Value& shapeSpecs) {
         Vec3f* vertices = (Vec3f*)malloc(vs.size()*sizeof(Vec3f));
         for (int i = 0; i < vs.size(); i++) { // parse vertices
             vertices[i] = Vec3f(vs[i][0],vs[i][1],vs[i][2]);
-            if (vs[i][1] == -INFINITY) {
-                printf("!!!!!!%f,%f,%f\n",vs[i][0],vs[i][1],vs[i][2]);
-            }
             if (shapeSpecs.HasMember("objectToWorld")) {
                 // transform vertex to world space
                 objectToWorld.multVecMatrix(vertices[i],vertices[i]);
@@ -69,9 +66,6 @@ void TriMesh::createTriMesh(Value& shapeSpecs) {
 BoundingBox* TriMesh::getBoundingBox() {
     BoundingBox* boundingBox = new BoundingBox();
     for (Triangle* t : triangles) {
-        printf("!!!!TOTAL: %f,%f,%f\n",boundingBox->min.x,boundingBox->min.y,boundingBox->min.z);
-        printf("t bbox min: %f,%f,%f\n",t->getBoundingBox()->min.x,t->getBoundingBox()->min.y,t->getBoundingBox()->min.z);
-        printf("t bbox max: %f,%f,%f\n",t->getBoundingBox()->max.x,t->getBoundingBox()->max.y,t->getBoundingBox()->max.z);
         boundingBox->add(t->getBoundingBox());
     }
     return boundingBox;

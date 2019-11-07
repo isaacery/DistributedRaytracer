@@ -11,11 +11,8 @@ void BoundingBox::add(Vec3f p) {
 	max.x = std::max(p.x,max.x);
 	max.y = std::max(p.y,max.y);
 	max.z = std::max(p.z,max.z);
-	// if (p.y == -INFINITY) {
-	// 	printf("p: %f,%f,%f\n",p.x,p.y,p.z);
 	// 	printf("%f,%f,%f\n",min.x,min.y,min.z);
 	// 	printf("%f,%f,%f\n",max.x,max.y,max.z);
-	// }
 }
 
 /* add two bounding boxes together to produce a larger bounding box */
