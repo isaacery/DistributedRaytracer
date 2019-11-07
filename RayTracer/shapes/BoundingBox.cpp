@@ -21,6 +21,36 @@ void BoundingBox::add(BoundingBox* box) {
 	this->add(box->max);
 }
 
+/* split bounding box in half along longest axis, and return results in
+   left and right bounding boxes */
+void BoundingBox::split(BoundingBox* left, BoundingBox* right) {
+	float size_x = std::abs(min.x-max.x);
+	float size_y = std::abs(min.y-max.y);
+	float size_z = std::abs(min.z-max.z);
+
+	float size_max = std::max(std::max(size_x,size_y),size_z);
+
+	Vec3f min_mid = min;
+	Vec3f max_mid = max;
+
+	if (size_max == size_x) { // split on x axis
+		min_mid.x = min.x + size_x / 2.0;
+		max_mid.x = min_mid.x;
+	} else if (size_max == size_y) { // split on y axis
+		min_mid.y = min.y + size_y / 2.0;
+		max_mid.y = min_mid.y;
+	} else if (size_max == size_z) { // split on z axis
+		min_mid.z = min.z + size_z / 2.0;
+		max_mid.z = min_mid.z;
+	}
+
+	/* update the left right boxes */
+	left->setMin(min);
+	left->setMax(max_mid);
+	right->setMin(min_mid);
+	right->setMax(max);
+}
+
 /* intersection functon for bounding box - adapted from
    https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-box-intersection */
 Hit BoundingBox::intersect(Ray ray) {

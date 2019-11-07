@@ -10,8 +10,10 @@
 namespace rt{
 
 class BVH{
-
-
+public:
+    BVH(){};
+private:
+    
 };
 
 

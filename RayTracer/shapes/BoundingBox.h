@@ -35,6 +35,8 @@ public:
 
 	void add(Vec3f p);
 
+	void split(BoundingBox* left, BoundingBox* right);
+
 	BoundingBox* getBoundingBox() {
 		return this;
 	}
@@ -43,11 +45,26 @@ public:
 
 	bool contains(BoundingBox* box); // return true if this box contains provided bounding box
 
-	Vec3f min;
-    Vec3f max;
+	// setters and getters
+	Vec3f getMin() const {
+		return min;
+	}
+
+	Vec3f getMax() const {
+		return max;
+	}
+
+	void setMin(Vec3f min) {
+		this->min = min;
+	}
+
+	void setMax(Vec3f max) {
+		this->max = max;
+	}
 
 private:
-	//TODO: return min and max to here
+	Vec3f min;
+	Vec3f max;
 };
 
 
