@@ -10,8 +10,15 @@
 namespace rt{
 
 class BVH{
+<<<<<<< HEAD
 
 
+=======
+public:
+    BVH(){};
+private:
+    
+>>>>>>> textures
 };
 
 

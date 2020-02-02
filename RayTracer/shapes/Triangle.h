@@ -29,6 +29,10 @@ public:
             this->v0_uv = Vec2f(0,0);
             this->v1_uv = Vec2f(1,0);
             this->v2_uv = Vec2f(1,1);
+<<<<<<< HEAD
+=======
+            this->setBoundingBox(this->getBoundingBox());
+>>>>>>> textures
         }
 
     Triangle(Vec3f v0, Vec2f v0_uv, Vec3f v1, Vec2f v1_uv, Vec3f v2, Vec2f v2_uv, Material* material):
@@ -39,6 +43,10 @@ public:
             this->v0_uv = v0_uv;
             this->v1_uv = v1_uv;
             this->v2_uv = v2_uv;
+<<<<<<< HEAD
+=======
+            this->setBoundingBox(this->getBoundingBox());
+>>>>>>> textures
         }
 
     void createTriangle(Value& shapeSpecs);

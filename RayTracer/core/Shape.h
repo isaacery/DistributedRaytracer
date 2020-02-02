@@ -19,6 +19,8 @@ class BoundingBox;
 
 struct Hit;
 
+class BoundingBox;
+
 struct Ray;
 
 class Shape{
@@ -29,12 +31,20 @@ public:
 	//
 	Shape(){};
 
-	Shape(Material* material): material(material){};
+	Shape(Material* material):
+		material(material){};
 
 	void setMaterial(Material* material) {
 		this->material = material;
 	}
 
+<<<<<<< HEAD
+=======
+	void setBoundingBox(BoundingBox* boundingBox) {
+		this->boundingBox = boundingBox;
+	}
+
+>>>>>>> textures
 	virtual ~Shape(){};
 
 	virtual Hit intersect(Ray ray) = 0;
@@ -46,7 +56,7 @@ public:
 
 protected:
 	Material* material;
-
+	BoundingBox* boundingBox;
 };
 
 

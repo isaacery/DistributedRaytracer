@@ -56,10 +56,18 @@ void Quad::createQuad(Value& shapeSpecs) {
     Triangle* t2 = new Triangle(v3,v3_uv,v1,v1_uv,v2,v2_uv,m);
     std::vector<Triangle*> tris = {t1,t2};
     this->mesh = new TriMesh(tris,m);
+<<<<<<< HEAD
 }
 
 BoundingBox* Quad::getBoundingBox() {
     return mesh->getBoundingBox();
+=======
+    this->mesh->setBoundingBox(this->mesh->getBoundingBox());
+}
+
+BoundingBox* Quad::getBoundingBox() {
+    return mesh->getBoundingBox(); // don't need bounding box
+>>>>>>> textures
 }
 
 Hit Quad::intersect(Ray ray){

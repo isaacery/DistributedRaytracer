@@ -64,21 +64,31 @@ void TriMesh::createTriMesh(Value& shapeSpecs) {
 }
 
 BoundingBox* TriMesh::getBoundingBox() {
+<<<<<<< HEAD
     BoundingBox* box = new BoundingBox();
     for (Triangle* t : triangles) {
         box->add(t->getBoundingBox());
     }
     return box;
+=======
+    BoundingBox* boundingBox = new BoundingBox();
+    for (Triangle* t : triangles) {
+        boundingBox->add(t->getBoundingBox());
+    }
+    return boundingBox;
+>>>>>>> textures
 }
 
 Hit TriMesh::intersect(Ray ray) {
     Hit closest;
     closest.itsct = false;
-    closest.t = INFINITY;
-    for (Triangle* tri : triangles) {
-        Hit i = tri->intersect(ray);
-        if (i.itsct && i.t < closest.t) {
-            closest = i;
+    if (boundingBox->intersect(ray).itsct) {
+        closest.t = INFINITY;
+        for (Triangle* tri : triangles) {
+            Hit i = tri->intersect(ray);
+            if (i.itsct && i.t < closest.t) {
+                closest = i;
+            }
         }
     }
     return closest;
