@@ -25,5 +25,5 @@ An object-oriented, multithreaded, distributed raytracer written in C++.
 
 ## Future Work
 * Full bounding volume hierarchy
-* Gloabl illumination via rendering equation
+* Global illumination via rendering equation
 * Optimizations and bugfixing
