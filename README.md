@@ -17,7 +17,7 @@ An object-oriented, multithreaded, distributed raytracer written in C++.
   * Jittered-grid based sampling
 * Json input parsing
 * Bounding cubes
-* Suboptimal multithreading
+* Multithreading (to be upgraded to tiled approach soon)
 
 ## Example images
 
